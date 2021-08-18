@@ -159,7 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\gl3w.c" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>

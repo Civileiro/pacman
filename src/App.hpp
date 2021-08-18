@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <GL/gl3w.h>
 
 #include <GLFW/glfw3.h>
 
@@ -31,8 +31,8 @@ App::App(unsigned ScrWidth, unsigned ScrHeight) {
 
 	glfwMakeContextCurrent(window);
 
-	if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
-		throw std::exception {"ERROR::GLAD::FAILED_TO_INIT_GLAD"};
+	if (gl3wInit()) {
+		throw std::exception {"ERROR::GL3W::FAILED_TO_INIT_GL3W"};
 	}
 }
 App::~App() {

@@ -21,7 +21,7 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\glad.c">
+    <ClCompile Include="src\gl3w.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
