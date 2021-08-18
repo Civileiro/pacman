@@ -163,15 +163,21 @@
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pacman.hpp" />
     <ClInclude Include="src\App.hpp" />
     <ClInclude Include="src\Color.hpp" />
     <ClInclude Include="src\Coords.hpp" />
+    <ClInclude Include="src\Main.hpp" />
     <ClInclude Include="src\Shader.hpp" />
     <ClInclude Include="src\TextureLoader.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\shader.frag" />
     <None Include="src\shaders\shader.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\textures\pacall.png" />
+    <Image Include="src\textures\pactext.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

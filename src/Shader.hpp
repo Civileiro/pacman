@@ -47,7 +47,7 @@ class Shader {
 
   private:
 	void checkCompileErrors(const GLuint shader, std::string type) const;
-	std::string readShaderFile(std::string_view path) const;
+	std::string readShaderFile(std::string path) const;
 	GLuint createShader(const GLenum GLtype, std::string code, std::string name = "UNDEFINED") const;
 };
 
@@ -89,7 +89,7 @@ void Shader::checkCompileErrors(const GLuint shader, std::string type) const {
 		}
 	}
 }
-std::string Shader::readShaderFile(std::string_view path) const {
+std::string Shader::readShaderFile(std::string path) const {
 	std::string code;
 	std::ifstream file;
 	file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -101,8 +101,7 @@ std::string Shader::readShaderFile(std::string_view path) const {
 		file.close();
 		code = shaderStream.str();
 	} catch (std::ifstream::failure e) {
-		std::cout << e.what() << "\n";
-		throw std::exception {"ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ"};
+		throw std::exception {(std::string {e.what()} + "\nERROR::SHADER::FILE_NOT_SUCCESFULLY_READ\nPath: " + path).c_str()};
 	}
 	return code;
 }
