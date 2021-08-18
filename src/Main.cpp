@@ -4,11 +4,14 @@
 
 #include <iostream>
 
+std::string Shader::shaderFolder {"src/shaders"};
+
 int main() {
 
 	const App app {640u, 480u};
 
-	const Shader spriteShader {"src/shaders/shader.vert", "src/shaders/shader.frag"};
+
+	const Shader spriteShader {"shader.vert", "shader.frag"};
 
 	while (!glfwWindowShouldClose(app.getWindow())) {
 	}

@@ -10,13 +10,16 @@
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <filesystem>
 
 class Shader {
   private:
 	GLuint ID;
+	static std::string shaderFolder;
 
   public:
-	Shader(std::string_view vertexPath, std::string_view fragmentPath);
+	Shader(std::string_view vertexFileName, std::string_view fragmentFileName);
+
 	auto getID() const noexcept {
 		return ID;
 	}
@@ -48,14 +51,12 @@ class Shader {
 	GLuint createShader(const GLenum GLtype, std::string code, std::string name = "UNDEFINED") const;
 };
 
-Shader::Shader(std::string_view vertexPath, std::string_view fragmentPath) {
-	
-	std::string vertexCode {readShaderFile(vertexPath)};
-	std::string fragmentCode {readShaderFile(fragmentPath)};
-	// compile shader
-	GLuint vertex, fragment;
-	vertex = createShader(GL_VERTEX_SHADER, vertexCode, "VERTEX");
-	fragment = createShader(GL_FRAGMENT_SHADER, fragmentCode, "FRAGMENT");
+
+Shader::Shader(std::string_view vertexFileName, std::string_view fragmentFileName) {
+
+
+	GLuint vertex = createShader(GL_VERTEX_SHADER, readShaderFile(shaderFolder + '/' + vertexFileName.data()), "VERTEX");
+	GLuint fragment = createShader(GL_FRAGMENT_SHADER, readShaderFile(shaderFolder + '/' + fragmentFileName.data()), "FRAGMENT");
 
 	// create program and link shaders
 	ID = glCreateProgram();
