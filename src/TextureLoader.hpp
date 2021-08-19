@@ -4,21 +4,22 @@
 
 #include <stb_image.h>
 
+#include "Texture.hpp"
 #include <exception>
 #include <iostream>
 #include <string>
 #include <string_view>
 #include <vector>
 
-enum class texType { NONE, DIFFUSE, SPECULAR };
+
 
 class TextureLoader {
   private:
   public:
-	[[nodiscard]] static GLuint gl2DTexture(std::string path, texType type);
+	[[nodiscard]] static Texture gl2DTexture(std::string path, texType type);
 };
 
-GLuint TextureLoader::gl2DTexture(std::string path, texType type) {
+Texture TextureLoader::gl2DTexture(std::string path, texType type) {
 
 
 	GLuint textureID;
@@ -60,5 +61,5 @@ GLuint TextureLoader::gl2DTexture(std::string path, texType type) {
 	}
 	stbi_image_free(data);
 
-	return textureID;
+	return {textureID, width, height, type};
 }

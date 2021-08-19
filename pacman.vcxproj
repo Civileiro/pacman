@@ -163,13 +163,14 @@
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Sprite.hpp" />
+    <ClInclude Include="src\Entities.hpp" />
     <ClInclude Include="src\Pacman.hpp" />
     <ClInclude Include="src\App.hpp" />
-    <ClInclude Include="src\Color.hpp" />
-    <ClInclude Include="src\Coords.hpp" />
     <ClInclude Include="src\Main.hpp" />
     <ClInclude Include="src\Shader.hpp" />
     <ClInclude Include="src\TextureLoader.hpp" />
+    <ClInclude Include="src\Texture.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\shader.frag" />

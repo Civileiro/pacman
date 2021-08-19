@@ -22,3 +22,8 @@ void processInput(GLFWwindow *window) noexcept {
 
 	// if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 }
+
+void framebufferSizeCallback(GLFWwindow *window, int width, int height) noexcept {
+
+	glViewport(0, 0, width, height);
+}
