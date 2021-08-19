@@ -47,10 +47,10 @@ void Sprite::setupQuad() const noexcept {
 	float vert[] {
 	    -1.f,							1.f,								texCoords[0].x, texCoords[0].y,
 	    fixRatio(width / pacmanWidth),	1.f,								texCoords[1].x, texCoords[1].y, 
-		fixRatio(width / pacmanWidth),	fixRatio(height / pacmanHeight),	texCoords[2].x, texCoords[2].y, 
-		-1.f,							fixRatio(height / pacmanHeight),	texCoords[3].x, texCoords[3].y,
+		fixRatio(width / pacmanWidth),	-fixRatio(height / pacmanHeight),	texCoords[2].x, texCoords[2].y, 
+		-1.f,							-fixRatio(height / pacmanHeight),	texCoords[3].x, texCoords[3].y,
 	};
-	std::cout << height << " " << width;
+	std::cout << fixRatio(width / pacmanWidth) << " " << fixRatio(height / pacmanHeight);
 
 	unsigned int ind[] {0, 1, 2, 2, 3, 0};
 
