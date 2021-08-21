@@ -1,8 +1,8 @@
 
 #include "Main.hpp"
 
-std::string TextureLoader::textureFolder {"src/textures"};
-std::string Shader::shaderFolder {"src/shaders"};
+std::string TextureLoader::textureFolder {"textures"};
+std::string Shader::shaderFolder {"shaders"};
 
 int main() {
 	try {

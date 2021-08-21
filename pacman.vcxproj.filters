@@ -52,18 +52,18 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shaders\shader.frag">
+    <None Include="shaders\shader.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="src\shaders\shader.vert">
+    <None Include="shaders\shader.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\textures\pacall.png">
+    <Image Include="textures\pacall.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\textures\pactext.png">
+    <Image Include="textures\pactext.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
