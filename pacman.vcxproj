@@ -163,7 +163,7 @@
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Sprite.hpp" />
+    <ClInclude Include="src\SpriteRenderer.hpp" />
     <ClInclude Include="src\Entities.hpp" />
     <ClInclude Include="src\Pacman.hpp" />
     <ClInclude Include="src\App.hpp" />

@@ -1,30 +1,31 @@
 #pragma once
 
 #include "Entities.hpp"
-#include "TextureLoader.hpp"
 #include "Shader.hpp"
+#include "SpriteRenderer.hpp"
+#include "TextureLoader.hpp"
 #include <glm/glm.hpp>
 
 class Pacman {
   private:
   private:
-	static std::string textureFolder;
-	Texture texAtlas;
-	Texture texText;
+	TextureLoader tLoader;
+	SpriteRenderer renderer;
 	Maze maze;
 
   public:
 	Pacman();
-	void draw(Shader shader) const noexcept;
+	void render() const noexcept;
 };
 
-Pacman::Pacman()
-    : texAtlas {TextureLoader::gl2DTexture(textureFolder + '/' + "pacall.png", texType::DIFFUSE)},
-      texText {TextureLoader::gl2DTexture(textureFolder + '/' + "pactext.png", texType::DIFFUSE)},
-      maze {&texAtlas} {
+Pacman::Pacman() : tLoader {}, renderer {{"shader.vert", "shader.frag"}} {
+	tLoader.gl2DTexture("pacall.png", texType::DIFFUSE, "mainAtlas");
+	tLoader.gl2DTexture("pactext.png", texType::DIFFUSE, "textAtlas");
+	renderer.setResolution(224, 288);
+	maze = Maze {SubTexture {tLoader.getTexture("mainAtlas"), {0, 0}, {224, 248}}};
+
 }
 
-void Pacman::draw(Shader shader) const noexcept {
-	shader.use();
-	maze.draw(shader);
+void Pacman::render() const noexcept {
+	renderer.drawSprite(maze.getSprite(), maze.getPos());
 }

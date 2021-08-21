@@ -2,22 +2,28 @@
 
 #include <GL/gl3w.h>
 
-#include "Sprite.hpp"
 #include "Texture.hpp"
 #include <glm/glm.hpp>
 
-struct TileEntity {
+class TileEntity {
   private:
-	Sprite sprite;
+	SubTexture sTex;
+	glm::vec2 pos;
 
   public:
-	TileEntity(Texture *tex, glm::vec2 topLeftCoords, glm::vec2 bottomRightCoords) : sprite {tex, topLeftCoords, bottomRightCoords} {}
-	void draw(Shader shader) const noexcept {
-		sprite.draw(shader);
+	TileEntity() = default;
+	TileEntity(SubTexture sTex, glm::vec2 pos) : sTex {sTex}, pos {pos} {}
+	SubTexture getSprite() const noexcept {
+		return sTex;
+	}
+	glm::vec2 getPos() const noexcept {
+		return pos;
 	}
 };
 
-struct Maze : public TileEntity {
-
-	Maze(Texture *tex) : TileEntity {tex, {0, 0}, {224.f / tex->width, 1.f}} {}
+class Maze : public TileEntity {
+  private:
+  public:
+	Maze() = default;
+	Maze(SubTexture sTex) : TileEntity {sTex, glm::vec2{0.f, 16.f}} {}
 };

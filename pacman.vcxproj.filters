@@ -47,7 +47,7 @@
     <ClInclude Include="src\Entities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Sprite.hpp">
+    <ClInclude Include="src\SpriteRenderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

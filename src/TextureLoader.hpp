@@ -9,21 +9,40 @@
 #include <iostream>
 #include <string>
 #include <string_view>
-#include <vector>
-
-
+#include <unordered_map>
 
 class TextureLoader {
   private:
+	static std::string textureFolder;
+	std::unordered_map<std::string, Texture> loadedTextures;
+
   public:
-	[[nodiscard]] static Texture gl2DTexture(std::string path, texType type);
+	TextureLoader() = default;
+	~TextureLoader() {
+		for (auto &[texName, tex] : loadedTextures) {
+			glDeleteTextures(1, &tex.ID);
+		}
+	}
+	TextureLoader(const TextureLoader &other) = delete;
+	TextureLoader &operator=(const TextureLoader &other) = delete;
+	TextureLoader(TextureLoader &&other) = default;
+	TextureLoader &operator=(TextureLoader &&other) = default;
+
+	static Texture gl2DTexture(std::string fileName, texType type);
+	Texture gl2DTexture(std::string fileName, texType type, std::string texName);
+
+	Texture getTexture(std::string texName) noexcept {
+		return loadedTextures[texName];
+	}
 };
 
-Texture TextureLoader::gl2DTexture(std::string path, texType type) {
+Texture TextureLoader::gl2DTexture(std::string fileName, texType type) {
 
-
+	auto path {textureFolder + '/' + fileName};
 	GLuint textureID;
 	glGenTextures(1, &textureID);
+
+	// stbi_set_flip_vertically_on_load(true);
 
 	int width, height, nrComponents;
 	stbi_uc *data = stbi_load(path.data(), &width, &height, &nrComponents, 0);
@@ -62,4 +81,10 @@ Texture TextureLoader::gl2DTexture(std::string path, texType type) {
 	stbi_image_free(data);
 
 	return {textureID, width, height, type};
+}
+
+Texture TextureLoader::gl2DTexture(std::string fileName, texType type, std::string texName) {
+	const Texture tex {gl2DTexture(fileName, type)};
+	loadedTextures[texName] = tex;
+	return tex;
 }
