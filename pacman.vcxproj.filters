@@ -50,8 +50,20 @@
     <ClInclude Include="src\SpriteRenderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\BatchRenderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vertex.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\old_shader.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shaders\old_shader.vert">
+      <Filter>Shaders</Filter>
+    </None>
     <None Include="shaders\shader.frag">
       <Filter>Shaders</Filter>
     </None>

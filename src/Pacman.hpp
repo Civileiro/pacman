@@ -3,6 +3,7 @@
 #include "Entities.hpp"
 #include "Shader.hpp"
 #include "SpriteRenderer.hpp"
+#include "BatchRenderer.hpp"
 #include "TextureLoader.hpp"
 #include <glm/glm.hpp>
 
@@ -18,7 +19,7 @@ class Pacman {
 	void render() const noexcept;
 };
 
-Pacman::Pacman() : tLoader {}, renderer {{"shader.vert", "shader.frag"}} {
+Pacman::Pacman() : tLoader {}, renderer {{"old_shader.vert", "old_shader.frag"}} {
 	tLoader.gl2DTexture("pacall.png", texType::DIFFUSE, "mainAtlas");
 	tLoader.gl2DTexture("pactext.png", texType::DIFFUSE, "textAtlas");
 	renderer.setResolution(224, 288);

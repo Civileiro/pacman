@@ -163,6 +163,7 @@
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BatchRenderer.hpp" />
     <ClInclude Include="src\SpriteRenderer.hpp" />
     <ClInclude Include="src\Entities.hpp" />
     <ClInclude Include="src\Pacman.hpp" />
@@ -171,8 +172,11 @@
     <ClInclude Include="src\Shader.hpp" />
     <ClInclude Include="src\TextureLoader.hpp" />
     <ClInclude Include="src\Texture.hpp" />
+    <ClInclude Include="src\Vertex.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\old_shader.frag" />
+    <None Include="shaders\old_shader.vert" />
     <None Include="shaders\shader.frag" />
     <None Include="shaders\shader.vert" />
   </ItemGroup>

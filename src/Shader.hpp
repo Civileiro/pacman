@@ -32,6 +32,10 @@ class Shader {
 	void setInt(std::string_view name, int value) const noexcept {
 		glUniform1i(glGetUniformLocation(ID, name.data()), value);
 	}
+	template<size_t vecSize>
+	void setIntVec(std::string_view name, const std::array<int, vecSize> values) const noexcept {
+		glUniform1iv(glGetUniformLocation(ID, name.data()), values);
+	}
 	void setFloat(std::string_view name, float value) const noexcept {
 		glUniform1f(glGetUniformLocation(ID, name.data()), value);
 	}
