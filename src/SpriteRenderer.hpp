@@ -26,7 +26,7 @@ SpriteRenderer::SpriteRenderer(Shader shader) noexcept : shader {shader} {
 	glGenBuffers(1, &VBO);
 
 	// clang-format off
-	float vertices[] = { 
+	constexpr float vertices[] = { 
         // pos      // tex
 	    0.0f, 1.0f, 0.0f, 0.0f,
         1.0f, 1.0f, 1.0f, 0.0f,

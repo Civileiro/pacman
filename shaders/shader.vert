@@ -5,7 +5,7 @@ layout (location = 1) in vec2 aTexCoords;
 layout (location = 2) in float aTexID;
 
 out vec2 TexCoords;
-out int TexID;
+flat out int TexID;
 
 uniform mat4 projection;
 
