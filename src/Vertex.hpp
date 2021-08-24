@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include <array>
+
 struct Vertex {
 	glm::vec2 pos;
 	glm::vec2 texPos;

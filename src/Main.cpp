@@ -20,7 +20,7 @@ int main() {
 
 			app.processInputs();
 
-			glClearColor(0.5f, 1.f, 0.5f, 1.f);
+			glClearColor(0.f, 0.f, 0.f, 1.f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			game.tick(deltaTime);

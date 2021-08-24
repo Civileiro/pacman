@@ -20,6 +20,7 @@ class Shader {
 	static std::string shaderFolder;
 
   public:
+	Shader() = default;
 	Shader(std::string_view vertexFileName, std::string_view fragmentFileName);
 
 	auto getID() const noexcept {
@@ -57,7 +58,7 @@ class Shader {
 	GLuint createShader(const GLenum GLtype, std::string_view code, shaderType type = shaderType::UNDEFINED) const;
 };
 
-Shader::Shader(std::string_view vertexFileName, std::string_view fragmentFileName) {
+inline Shader::Shader(std::string_view vertexFileName, std::string_view fragmentFileName) {
 
 	const GLuint vertex = createShader(GL_VERTEX_SHADER, readShaderFile(shaderFolder + '/' + vertexFileName.data()), shaderType::VERTEX);
 	const GLuint fragment = createShader(GL_FRAGMENT_SHADER, readShaderFile(shaderFolder + '/' + fragmentFileName.data()), shaderType::FRAGMENT);
@@ -72,7 +73,7 @@ Shader::Shader(std::string_view vertexFileName, std::string_view fragmentFileNam
 	glDeleteShader(fragment);
 }
 
-void Shader::checkCompileErrors(const GLuint shader, shaderType type) const {
+inline void Shader::checkCompileErrors(const GLuint shader, shaderType type) const {
 	GLint success;
 	GLchar infoLog[1024];
 	if (type != shaderType::PROGRAM) {
@@ -97,7 +98,7 @@ void Shader::checkCompileErrors(const GLuint shader, shaderType type) const {
 		}
 	}
 }
-std::string Shader::readShaderFile(std::string_view path) const {
+inline std::string Shader::readShaderFile(std::string_view path) const {
 	std::string code;
 	std::ifstream file;
 	file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -111,7 +112,7 @@ std::string Shader::readShaderFile(std::string_view path) const {
 	}
 	return code;
 }
-GLuint Shader::createShader(const GLenum GLtype, std::string_view code, shaderType type) const {
+inline GLuint Shader::createShader(const GLenum GLtype, std::string_view code, shaderType type) const {
 	const GLuint shader {glCreateShader(GLtype)};
 	const char *codePointer = code.data();
 	glShaderSource(shader, 1, &codePointer, NULL);

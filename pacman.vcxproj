@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BatchRenderer.cpp" />
+    <ClCompile Include="src\Entities.cpp" />
     <ClCompile Include="src\gl3w.c" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
