@@ -1,23 +1,23 @@
 #pragma once
 
-#include "Shader.hpp"
-#include "Texture.hpp"
+#include "../managers/ShaderManager.hpp"
+#include "../structs/Texture.hpp"
 
 class SpriteRenderer {
   private:
 	GLuint quadVAO;
-	Shader shader;
+	ShaderManager shader;
 	int resWidth = 800;
 	int resHeight = 600;
 
   public:
-	SpriteRenderer(Shader shader) noexcept;
+	SpriteRenderer(ShaderManager shader) noexcept;
 	void setResolution(int width, int height) noexcept;
 	void drawSprite(Texture texture, glm::vec2 position) const noexcept;
 	void drawSprite(SubTexture texture, glm::vec2 position) const noexcept;
 };
 
-SpriteRenderer::SpriteRenderer(Shader shader) noexcept : shader {shader} {
+SpriteRenderer::SpriteRenderer(ShaderManager shader) noexcept : shader {shader} {
 	
 	setResolution(resWidth, resHeight);
 

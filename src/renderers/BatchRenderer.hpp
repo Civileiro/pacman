@@ -2,9 +2,9 @@
 
 #include <GL/gl3w.h>
 
-#include "Entities.hpp"
-#include "Shader.hpp"
-#include "Vertex.hpp"
+#include "../entities/Entities.hpp"
+#include "../managers/ShaderManager.hpp"
+#include "../structs/Vertex.hpp"
 #include <algorithm>
 #include <array>
 #include <gsl/gsl>
@@ -16,17 +16,15 @@ class BatchEntity;
 class BatchRenderer {
   public:
 	BatchRenderer() = default;
-	BatchRenderer(const Shader shader, size_t bufferSize);
+	BatchRenderer(const ShaderManager shader, size_t bufferSize);
 	void render() const noexcept;
 	void setResolution(int width, int height) noexcept;
 	void setBufferPointer(BatchEntity *entity) noexcept;
-	void clearBatch() noexcept {
-		size = 0;
-	}
+	void clearBatch() noexcept;
 
   private:
 	GLuint VA, VB;
-	Shader shader;
+	ShaderManager shader;
 	int resWidth {224};
 	int resHeight {288};
 	size_t bufferSize;

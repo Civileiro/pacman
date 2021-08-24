@@ -159,22 +159,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\BatchRenderer.cpp" />
-    <ClCompile Include="src\Entities.cpp" />
-    <ClCompile Include="src\gl3w.c" />
+    <ClCompile Include="src\core\Engine.cpp" />
+    <ClCompile Include="src\entities\PacmanE.cpp" />
+    <ClCompile Include="src\entities\Maze.cpp" />
+    <ClCompile Include="src\game\Pacman.cpp" />
+    <ClCompile Include="src\managers\ShaderManager.cpp" />
+    <ClCompile Include="src\managers\TextureManager.cpp" />
+    <ClCompile Include="src\renderers\BatchRenderer.cpp" />
+    <ClCompile Include="src\entities\Entities.cpp" />
+    <ClCompile Include="src\core\gl3w.c" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\BatchRenderer.hpp" />
-    <ClInclude Include="src\SpriteRenderer.hpp" />
-    <ClInclude Include="src\Entities.hpp" />
-    <ClInclude Include="src\Pacman.hpp" />
-    <ClInclude Include="src\App.hpp" />
-    <ClInclude Include="src\Main.hpp" />
-    <ClInclude Include="src\Shader.hpp" />
-    <ClInclude Include="src\TextureLoader.hpp" />
-    <ClInclude Include="src\Texture.hpp" />
-    <ClInclude Include="src\Vertex.hpp" />
+    <ClInclude Include="src\entities\PacEntities.hpp" />
+    <ClInclude Include="src\entities\PacmanE.hpp" />
+    <ClInclude Include="src\entities\Maze.hpp" />
+    <ClInclude Include="src\renderers\BatchRenderer.hpp" />
+    <ClInclude Include="src\renderers\UNUSED_SpriteRenderer.hpp" />
+    <ClInclude Include="src\entities\Entities.hpp" />
+    <ClInclude Include="src\game\Pacman.hpp" />
+    <ClInclude Include="src\core\Engine.hpp" />
+    <ClInclude Include="src\managers\ShaderManager.hpp" />
+    <ClInclude Include="src\managers\TextureManager.hpp" />
+    <ClInclude Include="src\structs\Texture.hpp" />
+    <ClInclude Include="src\structs\Vertex.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\old_shader.frag" />

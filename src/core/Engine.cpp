@@ -1,26 +1,4 @@
-#pragma once
-
-#include <GL/gl3w.h>
-
-#include <GLFW/glfw3.h>
-
-#include <exception>
-
-class Engine {
-  private:
-	GLFWwindow *window;
-
-  public:
-	Engine(unsigned ScrWidth, unsigned ScrHeight);
-	~Engine();
-	Engine(const Engine &other) = delete;
-
-	[[nodiscard]] bool shouldStayOpen() const noexcept;
-	auto processInputs() const noexcept;
-	void swapBuffersAndPollEvents() const noexcept;
-	void setCallbacks() const noexcept;
-
-};
+#include "Engine.hpp"
 
 Engine::Engine(unsigned ScrWidth, unsigned ScrHeight) {
 	glfwInit();
@@ -47,7 +25,7 @@ Engine::~Engine() {
 bool Engine::shouldStayOpen() const noexcept {
 	return !glfwWindowShouldClose(window);
 }
-auto Engine::processInputs() const noexcept {
+int Engine::processInputs() const noexcept {
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
@@ -60,6 +38,8 @@ auto Engine::processInputs() const noexcept {
 	// if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 
 	// if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+
+	return 0;
 }
 void Engine::swapBuffersAndPollEvents() const noexcept {
 	glfwSwapBuffers(window);
@@ -68,5 +48,5 @@ void Engine::swapBuffersAndPollEvents() const noexcept {
 void Engine::setCallbacks() const noexcept {
 	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height) {
 		glViewport(0, 0, width, height);
-		});
+	});
 }

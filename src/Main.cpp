@@ -1,8 +1,14 @@
 
-#include "Main.hpp"
+#include "core/Engine.hpp"
+#include "game/Pacman.hpp"
+#include "managers/ShaderManager.hpp"
 
-std::string TextureLoader::textureFolder {"textures"};
-std::string Shader::shaderFolder {"shaders"};
+#include <iostream>
+#include <string>
+
+
+std::string TextureManager::textureFolder {"textures"};
+std::string ShaderManager::shaderFolder {"shaders"};
 
 int main() {
 	try {
@@ -10,6 +16,8 @@ int main() {
 		const Engine app {672u, 864u};
 
 		Pacman game {};
+
+		glClearColor(0.f, 0.f, 0.f, 1.f);
 
 		float deltaTime {0.f};
 		float lastFrameTime {0.f};
@@ -20,7 +28,7 @@ int main() {
 
 			app.processInputs();
 
-			glClearColor(0.f, 0.f, 0.f, 1.f);
+			
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			game.tick(deltaTime);

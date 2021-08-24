@@ -1,6 +1,6 @@
 #include "BatchRenderer.hpp"
 
-BatchRenderer::BatchRenderer(const Shader shader, size_t bufferSize)
+BatchRenderer::BatchRenderer(const ShaderManager shader, size_t bufferSize)
     : shader {shader},
       bufferSize {bufferSize},
       vertexBuffer {std::make_unique<Vertex[]>(bufferSize)} {
@@ -73,4 +73,8 @@ void BatchRenderer::setBufferPointer(BatchEntity *entity) noexcept {
 	entity->buffer = &vertexBuffer[size];
 	size += entity->bufferSize;
 	entity->initBuffer();
+}
+
+void BatchRenderer::clearBatch() noexcept {
+	size = 0;
 }

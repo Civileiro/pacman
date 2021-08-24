@@ -1,42 +1,19 @@
-#pragma once
+#include "TextureManager.hpp"
 
-#include <GL/gl3w.h>
-
+#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include "Texture.hpp"
-#include <exception>
-#include <iostream>
-#include <string>
-#include <string_view>
-#include <unordered_map>
-
-class TextureLoader {
-  private:
-	static std::string textureFolder;
-	std::unordered_map<std::string, Texture> loadedTextures;
-
-  public:
-	TextureLoader() = default;
-	~TextureLoader() {
-		for (auto &[texName, tex] : loadedTextures) {
-			glDeleteTextures(1, &tex.ID);
-		}
+TextureManager::~TextureManager() {
+	for (auto &[texName, tex] : loadedTextures) {
+		glDeleteTextures(1, &tex.ID);
 	}
-	TextureLoader(const TextureLoader &other) = delete;
-	TextureLoader &operator=(const TextureLoader &other) = delete;
-	TextureLoader(TextureLoader &&other) = default;
-	TextureLoader &operator=(TextureLoader &&other) = default;
+}
 
-	static Texture gl2DTexture(std::string fileName, texType type);
-	Texture gl2DTexture(std::string fileName, texType type, std::string texName);
+Texture TextureManager::getTexture(std::string texName) noexcept {
+	return loadedTextures[texName];
+}
 
-	Texture getTexture(std::string texName) noexcept {
-		return loadedTextures[texName];
-	}
-};
-
-Texture TextureLoader::gl2DTexture(std::string fileName, texType type) {
+Texture TextureManager::load2DTexture(std::string fileName, texType type) {
 
 	auto path {textureFolder + '/' + fileName};
 	GLuint textureID;
@@ -83,8 +60,8 @@ Texture TextureLoader::gl2DTexture(std::string fileName, texType type) {
 	return {textureID, width, height, type};
 }
 
-Texture TextureLoader::gl2DTexture(std::string fileName, texType type, std::string texName) {
-	const Texture tex {gl2DTexture(fileName, type)};
+Texture TextureManager::load2DTexture(std::string fileName, texType type, std::string texName) {
+	const Texture tex {load2DTexture(fileName, type)};
 	loadedTextures[texName] = tex;
 	return tex;
 }
