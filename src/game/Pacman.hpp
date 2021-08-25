@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../renderers/BatchRenderer.hpp"
-#include "../entities/PacEntities.hpp"
+#include "entities/PacEntities.hpp"
 #include "../managers/ShaderManager.hpp"
 #include "../managers/TextureManager.hpp"
 #include <algorithm>

@@ -27,13 +27,13 @@
     <ClCompile Include="src\renderers\BatchRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\Entities.cpp">
+    <ClCompile Include="src\base_entities\TileEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\Maze.cpp">
+    <ClCompile Include="src\game\entities\Maze.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\PacmanE.cpp">
+    <ClCompile Include="src\game\entities\PacmanE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\managers\ShaderManager.cpp">
@@ -46,6 +46,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\core\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\base_entities\BatchEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +68,7 @@
     <ClInclude Include="src\structs\Texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\Entities.hpp">
+    <ClInclude Include="src\base_entities\TileEntity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\renderers\UNUSED_SpriteRenderer.hpp">
@@ -77,13 +80,16 @@
     <ClInclude Include="src\structs\Vertex.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\Maze.hpp">
+    <ClInclude Include="src\game\entities\Maze.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\PacmanE.hpp">
+    <ClInclude Include="src\game\entities\PacmanE.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\PacEntities.hpp">
+    <ClInclude Include="src\game\entities\PacEntities.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base_entities\BatchEntity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entities.hpp"
+#include "../../base_entities/BatchEntity.hpp"
 
 class Maze : public BatchEntity {
   public:

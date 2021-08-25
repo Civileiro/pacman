@@ -14,7 +14,6 @@ void main()
     TexCoords = aTexCoords;
     TexID = int(aTexID);
 
-
     gl_Position = projection * vec4(aPos, 0.f,  1.f);
     //gl_Position = vec4(aPos, 0.f,  1.f);
 

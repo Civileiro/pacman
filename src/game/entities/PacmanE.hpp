@@ -1,5 +1,6 @@
 #pragma once
-#include "Entities.hpp"
+
+#include "../../base_entities/BatchEntity.hpp"
 
 class PacmanE : public BatchEntity {
   public:

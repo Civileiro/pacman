@@ -2,7 +2,7 @@
 
 #include <GL/gl3w.h>
 
-#include "../entities/Entities.hpp"
+#include "../base_entities/BatchEntity.hpp"
 #include "../managers/ShaderManager.hpp"
 #include "../structs/Vertex.hpp"
 #include <algorithm>
