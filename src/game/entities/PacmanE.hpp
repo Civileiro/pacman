@@ -5,8 +5,7 @@
 class PacmanE : public BatchEntity {
   public:
 	PacmanE() = default;
-	PacmanE(const SubTexture sTex);
+	PacmanE(Texture *);
 
   private:
-
 };
