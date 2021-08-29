@@ -8,7 +8,7 @@
 #include "../renderers/BatchRenderer.hpp"
 #include "entities/PacEntities.hpp"
 #include <algorithm>
-#include <array>
+#include <vector>
 #include <glm/glm.hpp>
 
 class Pacman {
@@ -22,7 +22,7 @@ class Pacman {
 	TextureManager texManager;
 	InputManager inputManager;
 	BatchRenderer renderer;
-	std::array<std::unique_ptr<BatchEntity>, 2> entities;
+	std::vector<std::unique_ptr<BatchEntity>> entities;
 
 	float timeBucket {};
 

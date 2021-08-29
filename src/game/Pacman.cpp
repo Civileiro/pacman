@@ -2,8 +2,9 @@
 
 Pacman::Pacman(GLFWwindow *w) : window {w}, texManager {}, inputManager {w}, renderer {} {
 	renderer.setResolution(224, 288);
-	entities[0] = std::make_unique<Maze>(texManager.getTexture("pacMain.png"));
-	entities[1] = std::make_unique<PacmanE>(texManager.getTexture("pacMain.png"));
+	entities.reserve(2);
+	entities.emplace_back( std::make_unique<Maze>(texManager.getTexture("pacMain.png")));
+	entities.emplace_back(std::make_unique<PacmanE>(texManager.getTexture("pacMain.png")));
 
 	size_t totalBufferSize {0};
 	auto addBuffers = [&totalBufferSize](const auto &ent) {
