@@ -8,5 +8,5 @@ class PacmanE : public BatchEntity {
 	PacmanE(const SubTexture sTex);
 
   private:
-	void initBuffer() noexcept override;
+
 };

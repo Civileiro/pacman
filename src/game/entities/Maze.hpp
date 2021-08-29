@@ -10,5 +10,5 @@ class Maze : public BatchEntity {
 	void tick() noexcept;
 
   private:
-	void initBuffer() noexcept override;
+
 };
