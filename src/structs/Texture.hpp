@@ -19,18 +19,18 @@ struct Texture {
 };
 
 struct SubTexture {
-	Texture tex;
+	Texture *tex;
 	int width, height;
 	glm::mat4 texTransform;
 
 	SubTexture() = default;
-	SubTexture(const Texture &texture, const glm::vec2 &coords, const glm::vec2 &size)
-	    : tex {texture},
-	      width {gsl::narrow_cast<int>(size.x)},
-	      height {gsl::narrow_cast<int>(size.y)},
-	      texTransform {1.f} {
+	SubTexture(Texture *texture, const glm::vec2 &coords, const glm::vec2 &size)
+		: tex {texture},
+		  width {gsl::narrow_cast<int>(size.x)},
+		  height {gsl::narrow_cast<int>(size.y)},
+		  texTransform {1.f} {
 
-		texTransform = glm::translate(texTransform, glm::vec3(coords.x / texture.width, coords.y / texture.height, 0.f));
-		texTransform = glm::scale(texTransform, glm::vec3 {size.x / texture.width, size.y / texture.height, 1.f});
+		texTransform = glm::translate(texTransform, glm::vec3(coords.x / texture->width, coords.y / texture->height, 0.f));
+		texTransform = glm::scale(texTransform, glm::vec3 {size.x / texture->width, size.y / texture->height, 1.f});
 	}
 };

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <GL/gl3w.h>
+
 #include "../managers/InputManager.hpp"
 #include "../managers/ShaderManager.hpp"
 #include "../managers/TextureManager.hpp"
@@ -16,6 +18,7 @@ class Pacman {
 	void tick(float deltaTime) noexcept;
 
   private:
+	GLFWwindow *window;
 	TextureManager texManager;
 	InputManager inputManager;
 	BatchRenderer renderer;

@@ -114,10 +114,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="textures\pacall.png">
+    <Image Include="textures\pacMain.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="textures\pactext.png">
+    <Image Include="textures\pacText.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

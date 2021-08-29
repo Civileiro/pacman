@@ -1,11 +1,9 @@
 #include "Pacman.hpp"
 
-Pacman::Pacman(GLFWwindow *w) : texManager {}, inputManager {w}, renderer {} {
-	texManager.load2DTexture("pacall.png", texType::DIFFUSE, "mainAtlas");
-	texManager.load2DTexture("pactext.png", texType::DIFFUSE, "textAtlas");
+Pacman::Pacman(GLFWwindow *w) : window {w}, texManager {}, inputManager {w}, renderer {} {
 	renderer.setResolution(224, 288);
-	entities[0] = std::make_unique<Maze>(SubTexture {texManager.getTexture("mainAtlas"), {0, 0}, {224, 248}});
-	entities[1] = std::make_unique<PacmanE>(SubTexture {texManager.getTexture("mainAtlas"), {456, 0}, {16, 16}});
+	entities[0] = std::make_unique<Maze>(SubTexture {texManager.getTexture("pacMain.png"), {0, 0}, {224, 248}});
+	entities[1] = std::make_unique<PacmanE>(SubTexture {texManager.getTexture("pacMain.png"), {456, 0}, {16, 16}});
 
 	size_t totalBufferSize {0};
 	auto addBuffers = [&totalBufferSize](const auto &ent) {
@@ -22,7 +20,7 @@ Pacman::Pacman(GLFWwindow *w) : texManager {}, inputManager {w}, renderer {} {
 
 void Pacman::render() noexcept {
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texManager.getTexture("mainAtlas").ID);
+	glBindTexture(GL_TEXTURE_2D, texManager.getTexture("pacMain.png")->ID);
 	renderer.render();
 }
 

@@ -199,8 +199,8 @@
     <None Include="shaders\shader.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="textures\pacall.png" />
-    <Image Include="textures\pactext.png" />
+    <Image Include="textures\pacMain.png" />
+    <Image Include="textures\pacText.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

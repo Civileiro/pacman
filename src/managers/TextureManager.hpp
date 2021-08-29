@@ -16,14 +16,12 @@ class TextureManager {
 	TextureManager(const TextureManager &other) = delete;
 	TextureManager &operator=(const TextureManager &other) = delete;
 
-	Texture getTexture(std::string texName) noexcept;
+	Texture *getTexture(std::string texName) noexcept;
+	Texture *getTexture(std::string texName, texType type) noexcept;
 
 	static Texture load2DTexture(std::string fileName, texType type);
-	Texture load2DTexture(std::string fileName, texType type, std::string texName);
 
   private:
 	static std::string textureFolder;
 	std::unordered_map<std::string, Texture> loadedTextures;
-
 };
-

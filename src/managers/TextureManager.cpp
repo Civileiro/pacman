@@ -9,8 +9,19 @@ TextureManager::~TextureManager() {
 	}
 }
 
-Texture TextureManager::getTexture(std::string texName) noexcept {
-	return loadedTextures.find(texName)->second;
+Texture *TextureManager::getTexture(std::string texName) noexcept {
+	auto tex = loadedTextures.find(texName);
+	if (tex == loadedTextures.end()) {
+		loadedTextures[texName] = load2DTexture(texName, texType::DIFFUSE);
+	}
+	return &loadedTextures.find(texName)->second;
+}
+Texture *TextureManager::getTexture(std::string texName, texType type) noexcept {
+	auto tex = loadedTextures.find(texName);
+	if (tex == loadedTextures.end()) {
+		loadedTextures[texName] = load2DTexture(texName, type);
+	}
+	return &loadedTextures.find(texName)->second;
 }
 
 Texture TextureManager::load2DTexture(std::string fileName, texType type) {
@@ -58,10 +69,4 @@ Texture TextureManager::load2DTexture(std::string fileName, texType type) {
 	stbi_image_free(data);
 
 	return {textureID, width, height, type};
-}
-
-Texture TextureManager::load2DTexture(std::string fileName, texType type, std::string texName) {
-	const Texture tex {load2DTexture(fileName, type)};
-	loadedTextures[texName] = tex;
-	return tex;
 }
