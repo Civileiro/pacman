@@ -8,4 +8,5 @@ class PacmanE : public BatchEntity {
 	PacmanE(Texture *);
 
   private:
+
 };

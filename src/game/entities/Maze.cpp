@@ -1,7 +1,8 @@
 #include "Maze.hpp"
 
 Maze::Maze(Texture *tex) : BatchEntity {4 /* * 28 * 31 */, {0.f, 16.f}} {
-	sTextures.push_back(SubTexture {tex, {0.f, 0.f}, {224.f, 248.f}});
+	sTextures = std::make_unique<SubTexture[]>(20);
+	sTextures[0] = SubTexture {tex, {0.f, 0.f}, {224.f, 248.f}};
 }
 
 void Maze::updateBuffer() const noexcept {}
