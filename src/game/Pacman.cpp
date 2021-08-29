@@ -24,7 +24,15 @@ void Pacman::render() noexcept {
 	renderer.render();
 }
 
-void Pacman::tick(float deltaTime) noexcept {}
+void Pacman::addTime(float deltaTime) noexcept {
+	constexpr auto fps = 60.f;
+
+	timeBucket += deltaTime;
+	while (timeBucket > 1.f / fps) {
+		tick();
+		timeBucket -= 1.f / fps;
+	}
+}
 
 void Pacman::bindDefaults() noexcept {
 	inputManager.bind(UP, GLFW_KEY_UP);
@@ -33,3 +41,5 @@ void Pacman::bindDefaults() noexcept {
 	inputManager.bind(LEFT, GLFW_KEY_LEFT);
 
 }
+
+void Pacman::tick() noexcept {}

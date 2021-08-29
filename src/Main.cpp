@@ -31,7 +31,7 @@ int main() {
 			
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			game.tick(deltaTime);
+			game.addTime(deltaTime);
 
 			game.render();
 
