@@ -1,21 +1,22 @@
 
 #include "core/Engine.hpp"
 #include "game/Pacman.hpp"
+#include "managers/TextureManager.hpp"
 #include "managers/ShaderManager.hpp"
 
 #include <iostream>
 #include <string>
 
 
-std::string TextureManager::textureFolder {"textures"};
-std::string ShaderManager::shaderFolder {"shaders"};
+std::string TextureManager::textureFolder {"textures/"};
+std::string ShaderManager::shaderFolder {"shaders/"};
 
 int main() {
 	try {
 
 		const Engine app {672u, 864u};
 
-		Pacman game {};
+		Pacman game {app.getWindow()};
 
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 
@@ -26,7 +27,6 @@ int main() {
 			deltaTime = currentTime - lastFrameTime;
 			lastFrameTime = currentTime;
 
-			app.processInputs();
 
 			
 			glClear(GL_COLOR_BUFFER_BIT);

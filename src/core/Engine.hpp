@@ -14,9 +14,10 @@ class Engine {
 	Engine(unsigned ScrWidth, unsigned ScrHeight);
 	~Engine();
 	Engine(const Engine &other) = delete;
+	Engine &operator=(const Engine &other) = delete;
 
 	[[nodiscard]] bool shouldStayOpen() const noexcept;
-	int processInputs() const noexcept;
+	[[nodiscard]] GLFWwindow *getWindow() const noexcept;
 	void swapBuffersAndPollEvents() const noexcept;
 	void setCallbacks() const noexcept;
 

@@ -1,7 +1,6 @@
 #include "Pacman.hpp"
 
-
-Pacman::Pacman() : texManager {}, renderer {} {
+Pacman::Pacman(GLFWwindow *w) : texManager {}, inputManager {w}, renderer {} {
 	texManager.load2DTexture("pacall.png", texType::DIFFUSE, "mainAtlas");
 	texManager.load2DTexture("pactext.png", texType::DIFFUSE, "textAtlas");
 	renderer.setResolution(224, 288);
@@ -17,6 +16,8 @@ Pacman::Pacman() : texManager {}, renderer {} {
 	for (auto &ent : entities) {
 		renderer.setBufferPointer(ent.get());
 	}
+
+	bindDefaults();
 }
 
 void Pacman::render() noexcept {
@@ -26,3 +27,11 @@ void Pacman::render() noexcept {
 }
 
 void Pacman::tick(float deltaTime) noexcept {}
+
+void Pacman::bindDefaults() noexcept {
+	inputManager.bind(UP, GLFW_KEY_UP);
+	inputManager.bind(DOWN, GLFW_KEY_DOWN);
+	inputManager.bind(RIGHT, GLFW_KEY_RIGHT);
+	inputManager.bind(LEFT, GLFW_KEY_LEFT);
+
+}

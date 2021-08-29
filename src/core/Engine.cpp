@@ -25,22 +25,11 @@ Engine::~Engine() {
 bool Engine::shouldStayOpen() const noexcept {
 	return !glfwWindowShouldClose(window);
 }
-int Engine::processInputs() const noexcept {
 
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-		glfwSetWindowShouldClose(window, true);
-	}
-
-	// if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-
-	// if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-
-	// if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-
-	// if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-
-	return 0;
+GLFWwindow *Engine::getWindow() const noexcept {
+	return window;
 }
+
 void Engine::swapBuffersAndPollEvents() const noexcept {
 	glfwSwapBuffers(window);
 	glfwPollEvents();

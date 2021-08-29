@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -168,6 +168,7 @@
     <ClCompile Include="src\game\entities\PacmanE.cpp" />
     <ClCompile Include="src\game\entities\Maze.cpp" />
     <ClCompile Include="src\game\Pacman.cpp" />
+    <ClCompile Include="src\managers\InputManager.cpp" />
     <ClCompile Include="src\managers\ShaderManager.cpp" />
     <ClCompile Include="src\managers\TextureManager.cpp" />
     <ClCompile Include="src\renderers\BatchRenderer.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\game\entities\PacEntities.hpp" />
     <ClInclude Include="src\game\entities\PacmanE.hpp" />
     <ClInclude Include="src\game\entities\Maze.hpp" />
+    <ClInclude Include="src\managers\InputManager.hpp" />
     <ClInclude Include="src\renderers\BatchRenderer.hpp" />
     <ClInclude Include="src\renderers\UNUSED_SpriteRenderer.hpp" />
     <ClInclude Include="src\base_entities\TileEntity.hpp" />

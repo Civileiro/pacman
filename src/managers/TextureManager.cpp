@@ -10,7 +10,7 @@ TextureManager::~TextureManager() {
 }
 
 Texture TextureManager::getTexture(std::string texName) noexcept {
-	return loadedTextures[texName];
+	return loadedTextures.find(texName)->second;
 }
 
 Texture TextureManager::load2DTexture(std::string fileName, texType type) {
