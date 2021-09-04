@@ -30,4 +30,3 @@ void BatchEntity::initBuffer() noexcept {
 	//}
 	std::memcpy(buffer, &quad[0], bufferSize * sizeof(Vertex));
 }
-void BatchEntity::updateBuffer() const noexcept {}

@@ -7,8 +7,10 @@ class BatchEntity : public TileEntity {
 	BatchEntity(const size_t bufferSize, glm::vec2 pos);
 	[[nodiscard]] virtual size_t getBufferSize() const noexcept;
 	virtual void initBuffer() noexcept;
-	virtual void updateBuffer() const noexcept;
+	virtual void updateBuffer() const noexcept = 0;
 	friend class BatchRenderer;
+
+	virtual void tick() noexcept = 0;
 
   protected:
 	size_t bufferSize {};

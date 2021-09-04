@@ -20,6 +20,7 @@ int main() {
 
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 
+
 		float deltaTime {0.f};
 		float lastFrameTime {0.f};
 		while (app.shouldStayOpen()) {

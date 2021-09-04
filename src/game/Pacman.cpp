@@ -26,7 +26,7 @@ void Pacman::render() noexcept {
 }
 
 void Pacman::addTime(float deltaTime) noexcept {
-	constexpr auto fps = 60.f;
+	constexpr auto fps = 1.f;
 
 	timeBucket += deltaTime;
 	while (timeBucket > 1.f / fps) {
@@ -43,4 +43,6 @@ void Pacman::bindDefaults() noexcept {
 
 }
 
-void Pacman::tick() noexcept {}
+void Pacman::tick() noexcept {
+	entities[1]->tick();
+}

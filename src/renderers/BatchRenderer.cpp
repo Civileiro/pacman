@@ -46,7 +46,7 @@ BatchRenderer::BatchRenderer(const ShaderManager shader, size_t bufferSize)
 
 void BatchRenderer::render() const noexcept {
 	//for (int i {4}; i < size; i++) {
-	//	std::cout << "pos" << i << " " << vertexBuffer[i].pos.x << " " << vertexBuffer[i].pos.y << "\n";
+	//	//std::cout << "pos" << i << " " << vertexBuffer[i].pos.x << " " << vertexBuffer[i].pos.y << "\n";
 	//	std::cout << "tex" << i << " " << vertexBuffer[i].texPos.x << " " << vertexBuffer[i].texPos.y << "\n";
 	//}
 	shader.use();
