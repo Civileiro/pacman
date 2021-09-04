@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\wrappers\Framebuffer.cpp" />
     <ClCompile Include="src\base_entities\BatchEntity.cpp" />
     <ClCompile Include="src\core\Engine.cpp" />
     <ClCompile Include="src\game\entities\PacmanE.cpp" />
@@ -177,13 +178,14 @@
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\wrappers\Framebuffer.hpp" />
     <ClInclude Include="src\base_entities\BatchEntity.hpp" />
     <ClInclude Include="src\game\entities\PacEntities.hpp" />
     <ClInclude Include="src\game\entities\PacmanE.hpp" />
     <ClInclude Include="src\game\entities\Maze.hpp" />
     <ClInclude Include="src\managers\InputManager.hpp" />
     <ClInclude Include="src\renderers\BatchRenderer.hpp" />
-    <ClInclude Include="src\renderers\UNUSED_SpriteRenderer.hpp" />
+    <ClInclude Include="src\renderers\SpriteRenderer.hpp" />
     <ClInclude Include="src\base_entities\TileEntity.hpp" />
     <ClInclude Include="src\game\Pacman.hpp" />
     <ClInclude Include="src\core\Engine.hpp" />
@@ -193,8 +195,8 @@
     <ClInclude Include="src\structs\Vertex.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\old_shader.frag" />
-    <None Include="shaders\old_shader.vert" />
+    <None Include="shaders\screenShader.frag" />
+    <None Include="shaders\screenShader.vert" />
     <None Include="shaders\shader.frag" />
     <None Include="shaders\shader.vert" />
   </ItemGroup>

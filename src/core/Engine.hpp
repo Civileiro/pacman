@@ -20,6 +20,7 @@ class Engine {
 	[[nodiscard]] GLFWwindow *getWindow() const noexcept;
 	void swapBuffersAndPollEvents() const noexcept;
 	void setCallbacks() const noexcept;
+	void bindDefaultFrameBuffer() const noexcept;
 
 };
 

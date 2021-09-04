@@ -6,6 +6,7 @@
 #include "../managers/ShaderManager.hpp"
 #include "../managers/TextureManager.hpp"
 #include "../renderers/BatchRenderer.hpp"
+#include "../core/wrappers/Framebuffer.hpp"
 #include "entities/PacEntities.hpp"
 #include <algorithm>
 #include <vector>
@@ -14,11 +15,12 @@
 class Pacman {
   public:
 	Pacman(GLFWwindow *);
-	void render() noexcept;
+	[[nodiscard]] Framebuffer render() noexcept;
 	void addTime(float deltaTime) noexcept;
 
   private:
 	GLFWwindow *window;
+	Framebuffer framebuffer {224, 288};
 	TextureManager texManager;
 	InputManager inputManager;
 	BatchRenderer renderer;

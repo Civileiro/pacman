@@ -54,6 +54,9 @@
     <ClCompile Include="src\managers\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\wrappers\Framebuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Engine.hpp">
@@ -74,7 +77,7 @@
     <ClInclude Include="src\base_entities\TileEntity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderers\UNUSED_SpriteRenderer.hpp">
+    <ClInclude Include="src\renderers\SpriteRenderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\renderers\BatchRenderer.hpp">
@@ -98,12 +101,15 @@
     <ClInclude Include="src\managers\InputManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\wrappers\Framebuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\old_shader.frag">
+    <None Include="shaders\screenShader.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shaders\old_shader.vert">
+    <None Include="shaders\screenShader.vert">
       <Filter>Shaders</Filter>
     </None>
     <None Include="shaders\shader.frag">

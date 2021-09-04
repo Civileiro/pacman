@@ -39,3 +39,10 @@ void Engine::setCallbacks() const noexcept {
 		glViewport(0, 0, width, height);
 	});
 }
+
+void Engine::bindDefaultFrameBuffer() const noexcept {
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	int width, height;
+	glfwGetWindowSize(window, &width, &height);
+	glViewport(0, 0, width, height);
+}

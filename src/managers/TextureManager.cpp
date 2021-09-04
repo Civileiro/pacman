@@ -30,7 +30,7 @@ Texture TextureManager::load2DTexture(std::string fileName, texType type) {
 	GLuint textureID;
 	glGenTextures(1, &textureID);
 
-	// stbi_set_flip_vertically_on_load(true);
+	stbi_set_flip_vertically_on_load(true);
 
 	int width, height, nrComponents;
 	stbi_uc *data = stbi_load(path.data(), &width, &height, &nrComponents, 0);

@@ -1,12 +1,12 @@
 
 #include "core/Engine.hpp"
 #include "game/Pacman.hpp"
-#include "managers/TextureManager.hpp"
 #include "managers/ShaderManager.hpp"
+#include "managers/TextureManager.hpp"
+#include "renderers/SpriteRenderer.hpp"
 
 #include <iostream>
 #include <string>
-
 
 std::string TextureManager::textureFolder {"textures/"};
 std::string ShaderManager::shaderFolder {"shaders/"};
@@ -16,9 +16,9 @@ int main() {
 
 		const Engine app {672u, 864u};
 
-		Pacman game {app.getWindow()};
+		SpriteRenderer screenRender {{"screenShader.vert", "screenShader.frag"}};
 
-		glClearColor(0.f, 0.f, 0.f, 1.f);
+		Pacman game {app.getWindow()};
 
 
 		float deltaTime {0.f};
@@ -28,13 +28,18 @@ int main() {
 			deltaTime = currentTime - lastFrameTime;
 			lastFrameTime = currentTime;
 
-
-			
-			glClear(GL_COLOR_BUFFER_BIT);
-
 			game.addTime(deltaTime);
 
-			game.render();
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, game.render().getTex());
+
+
+			app.bindDefaultFrameBuffer();
+
+			glClearColor(0.f, 0.1f, 0.f, 1.f);
+			glClear(GL_COLOR_BUFFER_BIT);
+
+			screenRender.drawCurrentTextureToScreen();
 
 			app.swapBuffersAndPollEvents();
 		}
