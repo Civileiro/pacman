@@ -8,6 +8,7 @@ class Maze : public BatchEntity {
 	Maze(Texture *);
 	void updateBuffer() const noexcept;
 	void tick() noexcept;
+	void initBuffer() const noexcept;
 
   private:
 };

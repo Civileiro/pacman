@@ -22,6 +22,7 @@ void Engine::gameLoop() {
 		float currentTime = (float) glfwGetTime();
 		deltaTime = currentTime - lastFrameTime;
 		lastFrameTime = currentTime;
+
 		pacman.addTime(deltaTime);
 
 

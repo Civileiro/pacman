@@ -60,7 +60,9 @@ void BatchRenderer::render() const noexcept {
 	glBindBuffer(GL_ARRAY_BUFFER, VB);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, size * sizeof(Vertex), vertexBuffer.get());
 
+
 	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
+
 }
 
 void BatchRenderer::setResolution(int width, int height) noexcept {
