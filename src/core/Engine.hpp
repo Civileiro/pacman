@@ -5,6 +5,9 @@
 #include "../managers/ShaderManager.hpp"
 #include "../game/Pacman.hpp"
 #include "../renderers/SpriteRenderer.hpp"
+#include "../core/wrappers/Framebuffer.hpp"
+
+
 
 class Engine {
   public:
@@ -16,8 +19,11 @@ class Engine {
 	Core core;
 	TextureManager texM;
 	Pacman pacman;
+	Framebuffer pacBuffer {224, 288};
+
+
 	SpriteRenderer renderer;
 
-	void gameLoop(float frameTime);
+	void gameLoop();
 	void frameLoop();
 };

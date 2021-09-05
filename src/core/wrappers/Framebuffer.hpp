@@ -11,6 +11,8 @@ class Framebuffer {
 	Framebuffer(const Framebuffer &other) = delete;
 	Framebuffer &operator=(const Framebuffer &other) = delete;
 	void bind() const noexcept;
+	void bindRead() const noexcept;
+	void bindDraw() const noexcept;
 	Texture *getTex() noexcept;
   private:
 	int width, height;

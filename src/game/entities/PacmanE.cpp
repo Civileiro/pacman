@@ -34,7 +34,6 @@ void PacmanE::tick() noexcept {
 	} else {
 		currentTex = RIGHT2;
 	}
-	updateBuffer();
 
 }
 

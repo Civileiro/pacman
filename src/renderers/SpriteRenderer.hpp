@@ -13,6 +13,8 @@ class SpriteRenderer {
   public:
 	SpriteRenderer(ShaderManager shader) noexcept;
 	void setResolution(int width, int height) noexcept;
-	void drawSprite(Texture *texture, glm::vec2 position) const noexcept;
+	void drawSprite(Texture *texture, glm::vec2 position, float scaler = 1.f) const noexcept;
+	void drawSpriteCenterScaled(Texture *texture) const noexcept;
+	
 	//void drawSprite(SubTexture texture, glm::vec2 position) const noexcept;
 };

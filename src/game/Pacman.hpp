@@ -6,25 +6,27 @@
 #include "../managers/ShaderManager.hpp"
 #include "../managers/TextureManager.hpp"
 #include "../renderers/BatchRenderer.hpp"
-#include "../core/wrappers/Framebuffer.hpp"
 #include "entities/PacEntities.hpp"
 #include <algorithm>
 #include <vector>
 #include <glm/glm.hpp>
 
+#include <mutex>
+
+
 class Pacman {
   public:
 	Pacman(GLFWwindow *);
-	[[nodiscard]] Framebuffer *render() noexcept;
+	void render() noexcept;
 	void addTime(float deltaTime) noexcept;
 
   private:
 	GLFWwindow *window;
-	Framebuffer framebuffer {224, 288};
 	TextureManager texManager;
 	InputManager inputManager;
 	BatchRenderer renderer;
 	std::vector<std::unique_ptr<BatchEntity>> entities;
+	std::mutex changeBuffer;
 
 	float timeBucket {};
 

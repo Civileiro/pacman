@@ -36,6 +36,14 @@ void Framebuffer::bind() const noexcept {
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBufferObject);
 }
 
+void Framebuffer::bindRead() const noexcept {
+	glBindFramebuffer(GL_READ_FRAMEBUFFER, frameBufferObject);
+}
+
+void Framebuffer::bindDraw() const noexcept {
+	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, frameBufferObject);
+}
+
 Texture *Framebuffer::getTex() noexcept {
 	return &texBuffer;
 }

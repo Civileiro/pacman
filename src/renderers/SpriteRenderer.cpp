@@ -1,6 +1,5 @@
 #include "SpriteRenderer.hpp"
 
-
 SpriteRenderer::SpriteRenderer(ShaderManager shader) noexcept : shader {shader} {
 
 	setResolution(resWidth, resHeight);
@@ -39,7 +38,7 @@ void SpriteRenderer::setResolution(int width, int height) noexcept {
 	resHeight = height;
 }
 
-void SpriteRenderer::drawSprite(Texture *texture, glm::vec2 position) const noexcept {
+void SpriteRenderer::drawSprite(Texture *texture, glm::vec2 position, float scaler) const noexcept {
 	// prepare transformations
 	this->shader.use();
 	glm::mat4 model = glm::mat4(1.0f);
@@ -47,7 +46,7 @@ void SpriteRenderer::drawSprite(Texture *texture, glm::vec2 position) const noex
 
 	const glm::vec2 size {texture->width, texture->height};
 
-	model = glm::scale(model, glm::vec3(size, 1.0f));
+	model = glm::scale(model, glm::vec3(size * scaler, 1.0f));
 
 	this->shader.setMat4("model", model);
 
@@ -63,9 +62,22 @@ void SpriteRenderer::drawSprite(Texture *texture, glm::vec2 position) const noex
 
 	glBindVertexArray(this->quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
 }
 
+void SpriteRenderer::drawSpriteCenterScaled(Texture *texture) const noexcept {
+	const auto ratioTex {(float) texture->height / (float) texture->width};
+	const auto ratioScr {(float) resHeight / (float) resWidth};
+	float scaler;
+	glm::vec2 pos {};
+	if (ratioTex > ratioScr) {
+		scaler = (float) resHeight / (float) texture->height;
+		pos = {(float) (resWidth - texture->width * scaler) / 2.f, 0.f};
+	} else {
+		scaler = (float) resWidth / (float) texture->width;
+		pos = {0.f, (float) (resHeight - texture->height * scaler) / 2.f};
+	}
+	drawSprite(texture, pos, scaler);
+}
 
 // void SpriteRenderer::drawSprite(SubTexture subTexture, glm::vec2 position) const noexcept {
 //	// prepare transformations

@@ -19,17 +19,18 @@ Pacman::Pacman(GLFWwindow *w) : window {w}, texManager {}, inputManager {w}, ren
 	bindDefaults();
 }
 
-Framebuffer *Pacman::render() noexcept {
-	framebuffer.bind();
+void Pacman::render() noexcept {
+
 	glClearColor(1.f / 255.f, 1.f / 255.f, 1.f / 255.f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texManager.getTexture("pacMain.png")->ID);
-
+	changeBuffer.lock();
 	renderer.render();
+	changeBuffer.unlock();
 
-	return &framebuffer;
+
 }
 
 void Pacman::addTime(float deltaTime) noexcept {
@@ -52,4 +53,9 @@ void Pacman::bindDefaults() noexcept {
 
 void Pacman::tick() noexcept {
 	entities[1]->tick();
+
+	changeBuffer.lock();
+	entities[1]->updateBuffer();
+	changeBuffer.unlock();
+
 }
