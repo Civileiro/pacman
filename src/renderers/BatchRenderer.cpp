@@ -5,7 +5,7 @@ BatchRenderer::BatchRenderer(const ShaderManager shader, size_t bufferSize)
       bufferSize {bufferSize},
       vertexBuffer {std::make_unique<Vertex[]>(bufferSize)} {
 
-	shader.setIntVec("textures", std::array {0, 1});
+	shader.setIntVec("textures", std::array {0, 1, 2, 3, 4, 5, 6, 7,});
 
 	glGenVertexArrays(1, &VA);
 	glGenBuffers(1, &VB);

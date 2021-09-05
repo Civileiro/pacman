@@ -39,52 +39,33 @@ void SpriteRenderer::setResolution(int width, int height) noexcept {
 	resHeight = height;
 }
 
-void SpriteRenderer::drawSprite(Texture texture, glm::vec2 position) const noexcept {
+void SpriteRenderer::drawSprite(Texture *texture, glm::vec2 position) const noexcept {
 	// prepare transformations
 	this->shader.use();
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(position, 0.0f));
 
-	const glm::vec2 size {texture.width, texture.height};
+	const glm::vec2 size {texture->width, texture->height};
 
 	model = glm::scale(model, glm::vec3(size, 1.0f));
 
 	this->shader.setMat4("model", model);
 
 	const glm::mat4 proj {glm::ortho(0.f, (float) resWidth, 0.f, (float) resHeight)};
+
 	shader.setMat4("projection", proj);
 
 	constexpr auto texTrans {glm::mat4 {1.f}};
 	this->shader.setMat4("texTransform", texTrans);
 
 	glActiveTexture(GL_TEXTURE0);
-	texture.bind();
+	texture->bind();
 
 	glBindVertexArray(this->quadVAO);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	glBindVertexArray(0);
+
 }
 
-void SpriteRenderer::drawCurrentTextureToScreen() const noexcept {
-	// prepare transformations
-	this->shader.use();
-	glm::mat4 model = glm::mat4(1.0f);
-
-	this->shader.setMat4("model", model);
-
-	const glm::mat4 proj {glm::ortho(0.f, 1.f, 0.f, 1.f)};
-	shader.setMat4("projection", proj);
-
-	constexpr auto texTrans {glm::mat4 {1.f}};
-	this->shader.setMat4("texTransform", texTrans);
-
-	// glActiveTexture(GL_TEXTURE0);
-	// texture.bind();
-
-	glBindVertexArray(this->quadVAO);
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-	glBindVertexArray(0);
-}
 
 // void SpriteRenderer::drawSprite(SubTexture subTexture, glm::vec2 position) const noexcept {
 //	// prepare transformations

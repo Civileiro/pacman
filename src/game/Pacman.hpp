@@ -15,7 +15,7 @@
 class Pacman {
   public:
 	Pacman(GLFWwindow *);
-	[[nodiscard]] Framebuffer render() noexcept;
+	[[nodiscard]] Framebuffer *render() noexcept;
 	void addTime(float deltaTime) noexcept;
 
   private:

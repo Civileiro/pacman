@@ -19,9 +19,9 @@ Pacman::Pacman(GLFWwindow *w) : window {w}, texManager {}, inputManager {w}, ren
 	bindDefaults();
 }
 
-Framebuffer Pacman::render() noexcept {
+Framebuffer *Pacman::render() noexcept {
 	framebuffer.bind();
-	glClearColor(0.f, 0.f, 0.f, 1.f);
+	glClearColor(1.f / 255.f, 1.f / 255.f, 1.f / 255.f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glActiveTexture(GL_TEXTURE0);
@@ -29,7 +29,7 @@ Framebuffer Pacman::render() noexcept {
 
 	renderer.render();
 
-	return framebuffer;
+	return &framebuffer;
 }
 
 void Pacman::addTime(float deltaTime) noexcept {

@@ -17,6 +17,7 @@ int main() {
 		const Engine app {672u, 864u};
 
 		SpriteRenderer screenRender {{"screenShader.vert", "screenShader.frag"}};
+		screenRender.setResolution(672, 864);
 
 		Pacman game {app.getWindow()};
 
@@ -30,16 +31,15 @@ int main() {
 
 			game.addTime(deltaTime);
 
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, game.render().getTex());
 
+			const auto pacTex = game.render()->getTex();
 
 			app.bindDefaultFrameBuffer();
 
-			glClearColor(0.f, 0.1f, 0.f, 1.f);
+			glClearColor(0.1f, 0.1f, 0.1f, 1.f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			screenRender.drawCurrentTextureToScreen();
+			screenRender.drawSprite(pacTex, {0.f, 0.f});
 
 			app.swapBuffersAndPollEvents();
 		}

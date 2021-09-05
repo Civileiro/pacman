@@ -9,13 +9,7 @@ TextureManager::~TextureManager() {
 	}
 }
 
-Texture *TextureManager::getTexture(std::string texName) noexcept {
-	auto tex = loadedTextures.find(texName);
-	if (tex == loadedTextures.end()) {
-		loadedTextures[texName] = load2DTexture(texName, texType::DIFFUSE);
-	}
-	return &loadedTextures.find(texName)->second;
-}
+
 Texture *TextureManager::getTexture(std::string texName, texType type) noexcept {
 	auto tex = loadedTextures.find(texName);
 	if (tex == loadedTextures.end()) {
