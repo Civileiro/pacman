@@ -176,6 +176,7 @@
     <ClCompile Include="src\base_entities\TileEntity.cpp" />
     <ClCompile Include="src\core\gl3w.c" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\renderers\SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\wrappers\Framebuffer.hpp" />
