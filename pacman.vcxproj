@@ -163,9 +163,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\Engine.cpp" />
     <ClCompile Include="src\core\wrappers\Framebuffer.cpp" />
     <ClCompile Include="src\base_entities\BatchEntity.cpp" />
-    <ClCompile Include="src\core\Engine.cpp" />
+    <ClCompile Include="src\core\Core.cpp" />
     <ClCompile Include="src\game\entities\PacmanE.cpp" />
     <ClCompile Include="src\game\entities\Maze.cpp" />
     <ClCompile Include="src\game\Pacman.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="src\renderers\SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\Engine.hpp" />
     <ClInclude Include="src\core\wrappers\Framebuffer.hpp" />
     <ClInclude Include="src\base_entities\BatchEntity.hpp" />
     <ClInclude Include="src\game\entities\PacEntities.hpp" />
@@ -189,7 +191,7 @@
     <ClInclude Include="src\renderers\SpriteRenderer.hpp" />
     <ClInclude Include="src\base_entities\TileEntity.hpp" />
     <ClInclude Include="src\game\Pacman.hpp" />
-    <ClInclude Include="src\core\Engine.hpp" />
+    <ClInclude Include="src\core\Core.hpp" />
     <ClInclude Include="src\managers\ShaderManager.hpp" />
     <ClInclude Include="src\managers\TextureManager.hpp" />
     <ClInclude Include="src\structs\Texture.hpp" />

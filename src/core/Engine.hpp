@@ -1,26 +1,23 @@
 #pragma once
 
-#include <GL/gl3w.h>
-
-#include <GLFW/glfw3.h>
-
-#include <exception>
+#include "Core.hpp"
+#include "../managers/TextureManager.hpp"
+#include "../managers/ShaderManager.hpp"
+#include "../game/Pacman.hpp"
+#include "../renderers/SpriteRenderer.hpp"
 
 class Engine {
-  private:
-	GLFWwindow *window;
-
   public:
-	Engine(unsigned ScrWidth, unsigned ScrHeight);
+	Engine();
 	~Engine();
-	Engine(const Engine &other) = delete;
-	Engine &operator=(const Engine &other) = delete;
+	void startEngine();
 
-	[[nodiscard]] bool shouldStayOpen() const noexcept;
-	[[nodiscard]] GLFWwindow *getWindow() const noexcept;
-	void swapBuffersAndPollEvents() const noexcept;
-	void setCallbacks() const noexcept;
-	void bindDefaultFrameBuffer() const noexcept;
+  private:
+	Core core;
+	TextureManager texM;
+	Pacman pacman;
+	SpriteRenderer renderer;
 
+	void gameLoop(float frameTime);
+	void frameLoop();
 };
-

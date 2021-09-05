@@ -1,48 +1,38 @@
 #include "Engine.hpp"
 
-Engine::Engine(unsigned ScrWidth, unsigned ScrHeight) {
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+std::string TextureManager::textureFolder {"textures/"};
+std::string ShaderManager::shaderFolder {"shaders/"};
 
-	window = glfwCreateWindow(ScrWidth, ScrHeight, "Pacman", NULL, NULL);
-	if (!window) {
-		throw std::exception {"ERROR::GLFW::FAILED_TO_CREATE_WINDOW"};
+Engine::Engine() : core {800, 600}, pacman {core.getWindow()}, renderer {{"screenShader.vert", "screenShader.frag"}} {}
+
+Engine::~Engine() = default;
+
+void Engine::startEngine() {
+	float deltaTime {0.f};
+	float lastFrameTime {0.f};
+	while (core.shouldStayOpen()) {
+		float currentTime = (float) glfwGetTime();
+		deltaTime = currentTime - lastFrameTime;
+		lastFrameTime = currentTime;
+		gameLoop(deltaTime);
+		frameLoop();
 	}
-
-	glfwMakeContextCurrent(window);
-
-	glfwSetWindowUserPointer(window, this);
-
-	if (gl3wInit()) {
-		throw std::exception {"ERROR::GL3W::FAILED_TO_INIT_GL3W"};
-	}
-}
-Engine::~Engine() {
-	glfwTerminate();
-}
-bool Engine::shouldStayOpen() const noexcept {
-	return !glfwWindowShouldClose(window);
 }
 
-GLFWwindow *Engine::getWindow() const noexcept {
-	return window;
+void Engine::gameLoop(float frameTime) {
+	pacman.addTime(frameTime);
+
 }
 
-void Engine::swapBuffersAndPollEvents() const noexcept {
-	glfwSwapBuffers(window);
-	glfwPollEvents();
-}
-void Engine::setCallbacks() const noexcept {
-	glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height) {
-		glViewport(0, 0, width, height);
-	});
-}
+void Engine::frameLoop() {
+	const auto pacFrame = pacman.render()->getTex();
 
-void Engine::bindDefaultFrameBuffer() const noexcept {
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	int width, height;
-	glfwGetWindowSize(window, &width, &height);
-	glViewport(0, 0, width, height);
+	core.bindDefaultFrameBuffer();
+
+	glClearColor(0.1f, 0.1f, 0.1f, 1.f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	renderer.drawSprite(pacFrame, {0.f, 0.f});
+
+	core.swapBuffersAndPollEvents();
 }
