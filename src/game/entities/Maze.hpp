@@ -11,4 +11,5 @@ class Maze : public BatchEntity {
 	void initBuffer() const noexcept;
 
   private:
+	int passable[31][28];
 };

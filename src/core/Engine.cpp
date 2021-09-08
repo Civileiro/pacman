@@ -2,11 +2,13 @@
 
 #include <thread>
 
-
 std::string TextureManager::textureFolder {"textures/"};
 std::string ShaderManager::shaderFolder {"shaders/"};
 
-Engine::Engine() : core {224 * 3, 288 * 3}, pacman {core.getWindow()}, renderer {{"screenShader.vert", "screenShader.frag"}} {}
+Engine::Engine()
+	: core {224 * 3, 288 * 3},
+	  pacman {core.getWindow()},
+	  renderer {{"screenShader.vert", "screenShader.frag"}} {}
 
 Engine::~Engine() = default;
 
@@ -24,7 +26,6 @@ void Engine::gameLoop() {
 		lastFrameTime = currentTime;
 
 		pacman.addTime(deltaTime);
-
 
 		frameLoop();
 	}
@@ -47,6 +48,3 @@ void Engine::frameLoop() {
 
 	core.swapBuffersAndPollEvents();
 }
-
-
-
