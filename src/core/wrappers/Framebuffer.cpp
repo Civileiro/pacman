@@ -1,5 +1,5 @@
 #include "framebuffer.hpp"
-#include <exception>
+#include <stdexcept>
 
 Framebuffer::Framebuffer(int width, int height)
 	: width {width},
@@ -23,7 +23,7 @@ Framebuffer::Framebuffer(int width, int height)
 	// glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, RBO);
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		throw std::exception {"ERROR::FRAMEBUFFER:: Framebuffer is not complete!"};
+		throw std::runtime_error {"ERROR::FRAMEBUFFER:: Framebuffer is not complete!"};
 }
 
 Framebuffer::~Framebuffer() {

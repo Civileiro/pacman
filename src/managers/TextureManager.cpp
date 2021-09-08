@@ -58,7 +58,7 @@ Texture TextureManager::load2DTexture(std::string fileName, texType type) {
 		glBindTexture(GL_TEXTURE_2D, 0);
 
 	} else {
-		throw std::exception {("Texture failed to load at path: " + path).c_str()};
+		throw std::runtime_error {("Texture failed to load at path: " + path).c_str()};
 	}
 	stbi_image_free(data);
 

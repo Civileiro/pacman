@@ -1,5 +1,6 @@
 #include "Core.hpp"
 
+
 Core::Core(int scrWidth, int scrHeight) : scrWidth {scrWidth}, scrHeight {scrHeight} {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -8,7 +9,7 @@ Core::Core(int scrWidth, int scrHeight) : scrWidth {scrWidth}, scrHeight {scrHei
 
 	window = glfwCreateWindow(scrWidth, scrHeight, "Pacman", NULL, NULL);
 	if (!window) {
-		throw std::exception {"ERROR::GLFW::FAILED_TO_CREATE_WINDOW"};
+		throw std::runtime_error {"ERROR::GLFW::FAILED_TO_CREATE_WINDOW"};
 	}
 
 	glfwMakeContextCurrent(window);
@@ -16,7 +17,7 @@ Core::Core(int scrWidth, int scrHeight) : scrWidth {scrWidth}, scrHeight {scrHei
 	glfwSetWindowUserPointer(window, this);
 
 	if (gl3wInit()) {
-		throw std::exception {"ERROR::GL3W::FAILED_TO_INIT_GL3W"};
+		throw std::runtime_error {"ERROR::GL3W::FAILED_TO_INIT_GL3W"};
 	}
 
 }

@@ -3,7 +3,7 @@
 #include <GL/gl3w.h>
 
 #include "../structs/Texture.hpp"
-#include <exception>
+#include <stdexcept>
 #include <iostream>
 #include <string>
 #include <string_view>

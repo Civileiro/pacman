@@ -4,7 +4,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include <exception>
+#include <stdexcept>
 
 class Core {
   private:

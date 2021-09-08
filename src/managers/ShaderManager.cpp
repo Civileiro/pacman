@@ -27,10 +27,10 @@ void ShaderManager::setMat4(std::string_view name, const glm::mat4 &value) const
 
 ShaderManager::ShaderManager(std::string_view vertexFileName, std::string_view fragmentFileName) {
 
-	const GLuint vertex = createShader(GL_VERTEX_SHADER, readShaderFile(shaderFolder + '/' + vertexFileName.data()),
-					   shaderType::VERTEX);
-	const GLuint fragment = createShader(
-	    GL_FRAGMENT_SHADER, readShaderFile(shaderFolder + '/' + fragmentFileName.data()), shaderType::FRAGMENT);
+	const GLuint vertex =
+		createShader(GL_VERTEX_SHADER, readShaderFile(shaderFolder + '/' + vertexFileName.data()), shaderType::VERTEX);
+	const GLuint fragment =
+		createShader(GL_FRAGMENT_SHADER, readShaderFile(shaderFolder + '/' + fragmentFileName.data()), shaderType::FRAGMENT);
 
 	// create program and link shaders
 	ID = glCreateProgram();
@@ -51,9 +51,9 @@ void ShaderManager::checkCompileErrors(const GLuint shader, shaderType type) con
 			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
 			std::stringstream errorMessage;
 			errorMessage << "ERROR::SHADER_COMPILATION_ERROR " << static_cast<int>(type) << "\n"
-				     << infoLog << "\n -- --------------------------------------------------- -- ";
+						 << infoLog << "\n -- --------------------------------------------------- -- ";
 
-			throw std::exception {errorMessage.str().c_str()};
+			throw std::runtime_error {errorMessage.str()};
 		}
 	} else {
 		glGetProgramiv(shader, GL_LINK_STATUS, &success);
@@ -61,9 +61,9 @@ void ShaderManager::checkCompileErrors(const GLuint shader, shaderType type) con
 			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
 			std::stringstream errorMessage;
 			errorMessage << "ERROR::SHADER_COMPILATION_ERROR " << static_cast<int>(type) << "\n"
-				     << infoLog << "\n -- --------------------------------------------------- -- ";
+						 << infoLog << "\n -- --------------------------------------------------- -- ";
 
-			throw std::exception {errorMessage.str().c_str()};
+			throw std::runtime_error {errorMessage.str()};
 		}
 	}
 }
@@ -77,9 +77,8 @@ std::string ShaderManager::readShaderFile(std::string_view path) const {
 		code = std::string {std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>()};
 		file.close();
 	} catch (std::ifstream::failure e) {
-		throw std::exception {
-		    (std::string {e.what()} + "\nERROR::SHADER::FILE_NOT_SUCCESFULLY_READ\nPath: " + path.data())
-			.c_str()};
+		throw std::runtime_error {
+			(std::string {e.what()} + "\nERROR::SHADER::FILE_NOT_SUCCESFULLY_READ\nPath: " + path.data())};
 	}
 	return code;
 }
