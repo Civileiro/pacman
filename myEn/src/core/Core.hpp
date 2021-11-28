@@ -9,11 +9,12 @@
 class Core {
   private:
 	GLFWwindow *window;
-	int scrWidth, scrHeight;
+	int scrWidth;
+	int	scrHeight;
 
 
   public:
-	Core(int scrWidth, int scrHeight);
+	Core(int scrWidth = 800, int scrHeight = 600);
 	~Core();
 	Core(const Core &other) = delete;
 	Core &operator=(const Core &other) = delete;
@@ -23,6 +24,7 @@ class Core {
 	void swapBuffersAndPollEvents() const noexcept;
 	void setCallbacks() const noexcept;
 	void bindDefaultFrameBuffer() const noexcept;
+	void setWindowSize(int width, int height) const noexcept;
 
 };
 

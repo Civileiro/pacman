@@ -2,37 +2,39 @@
 
 #include <GL/gl3w.h>
 
-#include "../managers/InputManager.hpp"
-#include "../managers/ShaderManager.hpp"
-#include "../managers/TextureManager.hpp"
-#include "../renderers/BatchRenderer.hpp"
+#include "src/managers/InputManager.hpp"
+#include "src/managers/ShaderManager.hpp"
+#include "src/managers/TextureManager.hpp"
+#include "src/renderers/BatchRenderer.hpp"
+#include "src/core/Engine.hpp"
 #include "entities/PacEntities.hpp"
+#include "PacVars.hpp"
+
 #include <algorithm>
 #include <vector>
 #include <glm/glm.hpp>
 
-#include <mutex>
 
-
-class Pacman {
+class Pacman : public Engine {
   public:
-	Pacman(GLFWwindow *);
-	void render() noexcept;
-	void addTime(float deltaTime) noexcept;
+	Pacman();
 
   private:
-	GLFWwindow *window;
+	virtual void engineStart();
+	virtual void engineLoop(float frameDelta);
+	virtual void engineClose();
+
+	
+
 	TextureManager texManager;
 	InputManager inputManager;
 	BatchRenderer renderer;
-	std::vector<std::unique_ptr<BatchEntity>> entities;
-	std::mutex changeBuffer;
+	PacVars vars;
 
-	float timeBucket {};
+	enum {UP, DOWN, RIGHT, LEFT, PAUSE, BACK, EXIT};
 
-	enum {UP, DOWN, RIGHT, LEFT, PAUSE, BACK};
-
-  private:
-	void bindDefaults() noexcept;
+	void bindDefaultKeys() noexcept;
 	void tick() noexcept;
+	void render() noexcept;
+	void processInputs() noexcept;
 };
