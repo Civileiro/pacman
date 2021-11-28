@@ -88,10 +88,10 @@ bool Maze::canPacGo(Direction dir, glm::vec2 pos) const noexcept {
 	int pacCoordX = pos.x / 8;
 	int pacCoordY = 30 - static_cast<int>((pos.y - 16.f) / 8 + 0.01f);
 	std::cout << "X: " << pacCoordX << "\tY: " << pacCoordY << "\tinfo: " << mazeInfo[pacCoordY][pacCoordX] << '\n';
-	if ((pacCoordX == 0 || pacCoordX == 27) && (dir == Direction::LEFT || dir == Direction::RIGHT)) {
+	if ((pacCoordX <= 0 || pacCoordX >= 27) && (dir == Direction::LEFT || dir == Direction::RIGHT)) {
 		return true;
 	}
-	if (pacCoordX == 0 || pacCoordX == 27 || pacCoordY == 0 || pacCoordY == 30) {
+	if (pacCoordX <= 0 || pacCoordX >= 27 || pacCoordY == 0 || pacCoordY == 30) {
 		return false;
 	}
 	if (dir == Direction::UP && (pacPassable(mazeInfo[pacCoordY - 1][pacCoordX]) || fmod(pos.y, 8.f) < 4.f)) {

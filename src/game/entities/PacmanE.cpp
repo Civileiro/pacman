@@ -69,6 +69,11 @@ void PacmanE::tick(const PacVars &vars) noexcept {
 		pos.x -= velocity * pacCanMove;
 		currTex = LEFT1;
 	}
+	if (pos.x < -8.f) {
+		pos.x += 240.f;
+	} else if (pos.x > 232.f) {
+		pos.x -= 240.f;
+	}
 	std::cout << "pos:" << pos.x << '\t' << pos.y << '\n';
 	auto mVec = pos - vars.pacman->pos;
 	distanceMoved += abs(mVec.x) + abs(mVec.y);
