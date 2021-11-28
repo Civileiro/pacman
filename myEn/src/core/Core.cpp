@@ -48,3 +48,7 @@ void Core::bindDefaultFrameBuffer() const noexcept {
 	glfwGetWindowSize(window, &width, &height);
 	glViewport(0, 0, width, height);
 }
+
+void Core::setWindowSize(int width, int height) const noexcept {
+	glfwSetWindowSize(window, width, height);
+}

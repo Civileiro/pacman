@@ -8,7 +8,6 @@ class BatchEntity : public TileEntity {
 	[[nodiscard]] virtual size_t getBufferSize() const noexcept;
 	virtual void initBuffer() const noexcept;
 	virtual void updateBuffer() const noexcept = 0;
-	virtual void tick() noexcept = 0;
 
 	friend class BatchRenderer;
 

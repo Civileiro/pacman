@@ -1,15 +1,14 @@
 
-#include "core/Engine.hpp"
-
 #include <iostream>
+#include "game/Pacman.hpp"
 
 
 int main() {
 	
 	try {
 
-		Engine app {};
-		app.startEngine();
+		Pacman pac {};
+		pac.engineInit();
 
 	} catch (std::runtime_error e) {
 		std::cout << e.what();

@@ -1,15 +1,18 @@
 #pragma once
 
-#include "../../base_entities/BatchEntity.hpp"
+#include "PacEntity.hpp"
+#include "../structs/Structs.hpp"
 
-class Maze : public BatchEntity {
+class Maze : public PacEntity {
   public:
 	Maze() = default;
 	Maze(Texture *);
 	void updateBuffer() const noexcept;
-	void tick() noexcept;
+	void tick(const PacVars &vars) noexcept;
 	void initBuffer() const noexcept;
+	bool canPacGo(Direction dir, glm::vec2 pos) const noexcept;
+	bool pacPassable(int num) const noexcept;
 
   private:
-	int passable[31][28];
+	int mazeInfo[31][28] {};
 };

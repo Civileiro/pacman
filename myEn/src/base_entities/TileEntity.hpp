@@ -6,7 +6,7 @@
 #include "../structs/Vertex.hpp"
 #include <glm/glm.hpp>
 #include <iostream>
-#include <memory>
+#include <vector>
 
 class TileEntity {
   public:
@@ -15,7 +15,7 @@ class TileEntity {
 	[[nodiscard]] glm::vec2 getPos() const noexcept;
 
   protected:
-	std::unique_ptr<SubTexture[]> sTextures ;
+	std::vector<SubTexture> sTextures ;
 	glm::vec2 pos {0.f};
 };
 

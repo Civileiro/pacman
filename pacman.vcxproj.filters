@@ -21,75 +21,21 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\gl3w.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderers\BatchRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base_entities\TileEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\entities\Maze.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\game\entities\PacmanE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\managers\ShaderManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\managers\TextureManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\Pacman.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\Core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\base_entities\BatchEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\managers\InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\wrappers\Framebuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderers\SpriteRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Engine.cpp">
+    <ClCompile Include="src\game\PacVars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\Core.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\managers\ShaderManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\managers\TextureManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\Pacman.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\structs\Texture.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\base_entities\TileEntity.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderers\SpriteRenderer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\renderers\BatchRenderer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\structs\Vertex.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\game\entities\Maze.hpp">
@@ -101,32 +47,15 @@
     <ClInclude Include="src\game\entities\PacEntities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\base_entities\BatchEntity.hpp">
+    <ClInclude Include="src\game\PacVars.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\managers\InputManager.hpp">
+    <ClInclude Include="src\game\entities\PacEntity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\wrappers\Framebuffer.hpp">
+    <ClInclude Include="src\game\structs\Structs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\Engine.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="shaders\screenShader.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shaders\screenShader.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shaders\shader.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shaders\shader.vert">
-      <Filter>Shaders</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\pacMain.png">

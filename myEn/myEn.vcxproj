@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,32 +21,32 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d1b72f02-08ad-484f-b4a7-c68afb683d69}</ProjectGuid>
-    <RootNamespace>pacman</RootNamespace>
+    <ProjectGuid>{8d1265b2-f453-4b42-85b3-8dbdf4a6befa}</ProjectGuid>
+    <RootNamespace>myEn</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,23 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Libraries\include;$(SolutionDir)myEn;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Libraries\include</IncludePath>
+    <LibraryPath>C:/Libraries/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Libraries\include;$(SolutionDir)myEn;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Libraries\include</IncludePath>
+    <LibraryPath>C:/Libraries/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Libraries\include;$(SolutionDir)myEn;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Libraries\include</IncludePath>
+    <LibraryPath>C:/Libraries/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Libraries\include;$(SolutionDir)myEn;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Libraries\include</IncludePath>
+    <LibraryPath>C:/Libraries/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,14 +97,10 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)myEn</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -116,16 +112,12 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)myEn</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -135,14 +127,10 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)myEn</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,42 +142,46 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)myEn</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\game\entities\PacmanE.cpp" />
-    <ClCompile Include="src\game\entities\Maze.cpp" />
-    <ClCompile Include="src\game\Pacman.cpp" />
-    <ClCompile Include="src\game\PacVars.cpp" />
-    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\base_entities\BatchEntity.cpp" />
+    <ClCompile Include="src\base_entities\TileEntity.cpp" />
+    <ClCompile Include="src\core\Core.cpp" />
+    <ClCompile Include="src\core\Engine.cpp" />
+    <ClCompile Include="src\core\gl3w.c" />
+    <ClCompile Include="src\core\wrappers\Framebuffer.cpp" />
+    <ClCompile Include="src\managers\InputManager.cpp" />
+    <ClCompile Include="src\managers\ShaderManager.cpp" />
+    <ClCompile Include="src\managers\TextureManager.cpp" />
+    <ClCompile Include="src\renderers\BatchRenderer.cpp" />
+    <ClCompile Include="src\renderers\SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\game\entities\PacEntity.hpp" />
-    <ClInclude Include="src\game\entities\PacEntities.hpp" />
-    <ClInclude Include="src\game\entities\PacmanE.hpp" />
-    <ClInclude Include="src\game\entities\Maze.hpp" />
-    <ClInclude Include="src\game\Pacman.hpp" />
-    <ClInclude Include="src\game\PacVars.hpp" />
-    <ClInclude Include="src\game\structs\Structs.hpp" />
+    <ClInclude Include="src\base_entities\BatchEntity.hpp" />
+    <ClInclude Include="src\base_entities\TileEntity.hpp" />
+    <ClInclude Include="src\core\Core.hpp" />
+    <ClInclude Include="src\core\Engine.hpp" />
+    <ClInclude Include="src\core\wrappers\Framebuffer.hpp" />
+    <ClInclude Include="src\managers\InputManager.hpp" />
+    <ClInclude Include="src\managers\ShaderManager.hpp" />
+    <ClInclude Include="src\managers\TextureManager.hpp" />
+    <ClInclude Include="src\renderers\BatchRenderer.hpp" />
+    <ClInclude Include="src\renderers\SpriteRenderer.hpp" />
+    <ClInclude Include="src\structs\Texture.hpp" />
+    <ClInclude Include="src\structs\Vertex.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="textures\pacMain.png" />
-    <Image Include="textures\pacText.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="myEn\myEn.vcxproj">
-      <Project>{8d1265b2-f453-4b42-85b3-8dbdf4a6befa}</Project>
-    </ProjectReference>
+    <None Include="src\shaders\screenShader.frag" />
+    <None Include="src\shaders\screenShader.vert" />
+    <None Include="src\shaders\shader.frag" />
+    <None Include="src\shaders\shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
