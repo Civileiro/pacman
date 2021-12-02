@@ -7,7 +7,8 @@ class PacmanE : public PacEntity {
   public:
 	PacmanE() = default;
 	PacmanE(Texture *);
-	void updateBuffer() const noexcept;
+	void initBuffer() noexcept;
+	void updateBuffer() noexcept;
 	void tick(const PacVars &vars) noexcept;
 	void goUp() noexcept;
 	void goDown() noexcept;
@@ -19,6 +20,6 @@ class PacmanE : public PacEntity {
 	int currTex {START};
 	Direction currDir {};
 	float distanceMoved {0.f};
-	float velocity {1.f};
+	float velocity {1.46667f};
 	int animationStage {0};
 };

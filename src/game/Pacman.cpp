@@ -23,10 +23,10 @@ void Pacman::engineStart() {
 
 	renderer = BatchRenderer {{"shader.vert", "shader.frag"}, totalBufferSize};
 	renderer.setResolution(pacmanWidth, pacmanHeight);
-	
 	for (auto &ent : entities) {
 		renderer.setBufferPointer(ent);
 	}
+
 
 }
 void Pacman::engineLoop(float frameDelta) {
@@ -73,6 +73,7 @@ void Pacman::tick() noexcept {
 
 	const auto oldVars = vars;
 	vars.pacman->tick(oldVars);
+	vars.maze->tick(oldVars);
 
 	auto entities = vars.getEntityVector();
 	for (auto ent : entities) {
