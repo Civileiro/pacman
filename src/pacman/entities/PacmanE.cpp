@@ -1,7 +1,8 @@
 #include <pacman/entities/PacmanE.hpp>
-
-#include <cmath>
 #include <pacman/entities/PacEntities.hpp>
+
+#include <algorithm>
+#include <cmath>
 
 PacmanE::PacmanE(Texture *tex) : PacEntity {4, {112.f, 72.f}} {
 	sTextures = std::vector<SubTexture>(20);
@@ -30,7 +31,11 @@ PacmanE::PacmanE(Texture *tex) : PacEntity {4, {112.f, 72.f}} {
 	sTextures[D11]		= SubTexture {tex, {456.f + 13* texSize.x, 248.f - 1 * texSize.y}, texSize};
 	// clang-format on
 }
-void PacmanE::updateBuffer() const noexcept {
+void PacmanE::initBuffer() noexcept {
+	updateBuffer();
+}
+
+void PacmanE::updateBuffer() noexcept {
 	int useTex = currTex;
 	if (animationStage == 0) {
 		useTex = START;
@@ -55,38 +60,50 @@ void PacmanE::updateBuffer() const noexcept {
 }
 
 void PacmanE::tick(const PacVars &vars) noexcept {
-	auto pacCanMove = vars.maze->canPacGo(currDir, pos);
+	auto pacCanMove = vars.maze->canPacGo(currDir, pos) && !vars.maze->isDepleted();
+	// std::cout << vars.maze->isDepleted() << '\n';
+	auto middleSquare = vars.maze->currSquareMiddleCoords(pos);
 	if (currDir == Direction::UP) {
-		pos.y += velocity * pacCanMove;
 		currTex = UP1;
+		if (pacCanMove) {
+			pos.y += velocity;
+			pos.x += std::clamp(middleSquare.x - pos.x, -velocity, velocity);
+		}
 	} else if (currDir == Direction::RIGHT) {
-		pos.x += velocity * pacCanMove;
 		currTex = RIGHT1;
+		if (pacCanMove) {
+			pos.x += velocity;
+			pos.y += std::clamp(middleSquare.y - pos.y, -velocity, velocity);
+		}
 	} else if (currDir == Direction::DOWN) {
-		pos.y -= velocity * pacCanMove;
 		currTex = DOWN1;
+		if (pacCanMove) {
+			pos.y -= velocity;
+			pos.x += std::clamp(middleSquare.x - pos.x, -velocity, velocity);
+		}
 	} else if (currDir == Direction::LEFT) {
-		pos.x -= velocity * pacCanMove;
 		currTex = LEFT1;
+		if (pacCanMove) {
+			pos.x -= velocity;
+			pos.y += std::clamp(middleSquare.y - pos.y, -velocity, velocity);
+		}
 	}
-	std::cout << "pos:" << pos.x << '\t' << pos.y << '\n';
+	if (pos.x < -8.f) {
+		pos.x += 240.f;
+	} else if (pos.x > 232.f) {
+		pos.x -= 240.f;
+	}
+	// std::cout << "pos:" << pos.x << '\t' << pos.y << '\n';
 	auto mVec = pos - vars.pacman->pos;
 	distanceMoved += abs(mVec.x) + abs(mVec.y);
 
 	constexpr float distanceAnimation {3.f};
-	distanceMoved = fmod(distanceMoved + 0.01f, distanceAnimation * 4) - 0.01f;
-	animationStage = (distanceMoved + 0.01f) / distanceAnimation;
+	distanceMoved = fmod(distanceMoved, distanceAnimation * 4);
+	animationStage = gsl::narrow_cast<int>(distanceMoved / distanceAnimation);
 }
 
-void PacmanE::goUp() noexcept {
-	currDir = Direction::UP;
-}
-void PacmanE::goRight() noexcept {
-	currDir = Direction::RIGHT;
-}
-void PacmanE::goDown() noexcept {
-	currDir = Direction::DOWN;
-}
-void PacmanE::goLeft() noexcept {
-	currDir = Direction::LEFT;
+void PacmanE::goDir(Direction dir, const PacVars &vars) noexcept {
+	if (vars.maze->canPacGo(dir, pos)) {
+		currDir = dir;
+	}
 }

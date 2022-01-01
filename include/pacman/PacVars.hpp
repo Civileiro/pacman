@@ -8,8 +8,9 @@ class Maze;
 class PacmanE;
 
 struct PacVars {
+	uint64_t time {0}; 
 	std::unique_ptr<Maze> maze;
-	std::unique_ptr<PacmanE> pacman;
+	std::unique_ptr <PacmanE> pacman;
 
 	PacVars() = default;
 	PacVars(const PacVars &other);

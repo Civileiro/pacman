@@ -1,6 +1,8 @@
 #include <pacman/entities/Maze.hpp>
 
 #include <cmath>
+#include <gsl/gsl>
+#include "PacEntities.hpp"
 // clang-format off
 Maze::Maze(Texture *tex) 
 	: PacEntity {4 * 28 * 31, {0.f, 16.f}}, 
@@ -27,7 +29,7 @@ Maze::Maze(Texture *tex)
 							{0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 							{0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, },
 							{0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, },
-							{0, 3, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 8, 2, 2, 8, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 3, 0, },
+							{0, 3, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 6, 2, 2, 6, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 3, 0, },
 							{0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, },
 							{0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, },
 							{0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, },
@@ -43,22 +45,18 @@ Maze::Maze(Texture *tex)
 			const float posX {x * 8.f};
 			const float posY {y * 8.f};
 
-			sTextures[x + (y * 28)] = SubTexture {tex, {posX, posY}, {8.f, 8.f}};
+			sTextures[x + y * 28] = SubTexture {tex, {posX, posY}, {8.f, 8.f}};
 		}
 	}
-	
 }
 // clang-format on
 
-void Maze::updateBuffer() const noexcept {}
 
-void Maze::tick(const PacVars &vars) noexcept {}
-
-void Maze::initBuffer() const noexcept {
+void Maze::initBuffer() noexcept {
 
 	for (size_t y {0}; y < 31; y++) {
 		for (size_t x {0}; x < 28; x++) {
-			auto index = x + (y * 28);
+			const auto index = x + (y * 28);
 
 			auto *buf {&buffer[index * 4]};
 			auto quad {Vertex::getQuad()};
@@ -83,15 +81,46 @@ void Maze::initBuffer() const noexcept {
 		}
 	}
 }
+void Maze::updateBuffer() noexcept {
+	if (depleted) {
+		switchTile(lastDepletedX, lastDepletedY, true);
+	}
+	for (size_t y {0}; y < 31; y++) {
+		for (size_t x {0}; x < 28; x++) {
+			const auto inY = 30 - y;
+			if (mazeInfo[inY][x] != 3 || depletedGrid[inY][x]) {
+				continue;
+			}
+			switchTile(x, y, flashedTictac);
+		}
+	}
+}
+
+void Maze::tick(const PacVars &vars) noexcept {
+	const auto [pX, pY] = currSquare(vars.pacman->getPos());
+	const auto info = mazeInfo[pY][pX];
+	if ((info == 1 || info == 3 || info == 6) && !depletedGrid[pY][pX]) {
+		depletedGrid[pY][pX] = true;
+		depleted = true;
+		lastDepletedX = pX;
+		lastDepletedY = 30 - pY;
+	} else {
+		depleted = false;
+	}
+	if (vars.time % 20 >= 10) {
+		flashedTictac = true;
+	} else {
+		flashedTictac = false;
+	}
+}
 
 bool Maze::canPacGo(Direction dir, glm::vec2 pos) const noexcept {
-	int pacCoordX = pos.x / 8;
-	int pacCoordY = 30 - static_cast<int>((pos.y - 16.f) / 8 + 0.01f);
-	std::cout << "X: " << pacCoordX << "\tY: " << pacCoordY << "\tinfo: " << mazeInfo[pacCoordY][pacCoordX] << '\n';
-	if ((pacCoordX == 0 || pacCoordX == 27) && (dir == Direction::LEFT || dir == Direction::RIGHT)) {
+	const auto [pacCoordX, pacCoordY] = currSquare(pos);		
+	// std::cout << "X: " << pacCoordX << "\tY: " << pacCoordY << "\tinfo: " << mazeInfo[pacCoordY][pacCoordX] << '\n';
+	if ((pacCoordX <= 0 || pacCoordX >= 27) && (dir == Direction::LEFT || dir == Direction::RIGHT)) {
 		return true;
 	}
-	if (pacCoordX == 0 || pacCoordX == 27 || pacCoordY == 0 || pacCoordY == 30) {
+	if (pacCoordX <= 0 || pacCoordX >= 27 || pacCoordY == 0 || pacCoordY == 30) {
 		return false;
 	}
 	if (dir == Direction::UP && (pacPassable(mazeInfo[pacCoordY - 1][pacCoordX]) || fmod(pos.y, 8.f) < 4.f)) {
@@ -110,6 +139,41 @@ bool Maze::canPacGo(Direction dir, glm::vec2 pos) const noexcept {
 }
 
 bool Maze::pacPassable(int num) const noexcept {
-	std::cout << "can pass? " << ((0 < num && num < 4 || num == 8 || num == 9) ? "yes" : "no") << '\n';
-	return 0 < num && num < 4 || num == 8 || num == 9;
+	// std::cout << "can pass? " << ((0 < num && num < 4 || num == 8 || num == 9) ? "yes" : "no") << '\n';
+	return 0 < num && num < 4 || num == 6 || num == 8 || num == 9;
+}
+
+std::tuple<int, int> Maze::currSquare(glm::vec2 pos) const noexcept {
+	const int pacCoordX = gsl::narrow_cast<int>(pos.x) / 8;
+	const int pacCoordY = 30 - gsl::narrow_cast<int>((pos.y - 16.f) / 8 + 0.01f);
+	return {pacCoordX, pacCoordY};
+}
+
+glm::vec2 Maze::currSquareMiddleCoords(glm::vec2 pos) const noexcept {
+	auto mod8X = gsl::narrow_cast<int>(pos.x) / 8;
+	auto mod8Y = gsl::narrow_cast<int>(pos.y) / 8;
+	return glm::vec2(mod8X * 8 + 4.f, mod8Y * 8 + 4.f);
+}
+
+bool Maze::isDepleted() const noexcept {
+	return depleted;
+}
+
+void Maze::switchTile(std::size_t x, std::size_t y, bool switchSquare) noexcept {
+	const auto index = x + 28 * y;
+
+	auto *buf {&buffer[index * 4]};
+	auto quad {Vertex::getQuad()};
+
+	const float posX {x * 8.f};
+	const float posY {y * 8.f};
+
+	const auto add = 28 * 8;
+	sTextures[index] = SubTexture {sTextures[index].tex, {posX + add * switchSquare, posY}, {8.f, 8.f}};
+
+	int i {0};
+	for (auto &vert : quad) {
+		buf[i].texPos = sTextures[index].texQuad[i].texPos;
+		i++;
+	}
 }
