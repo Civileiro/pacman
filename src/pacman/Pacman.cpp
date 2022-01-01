@@ -10,8 +10,8 @@ void Pacman::engineStart() {
 	bindDefaultKeys();
 
 	core.setWindowSize(pacmanWidth * 3, pacmanHeight * 3);
-	vars.maze = std::make_unique<Maze>(texManager.getTexture("resources/pacman/textures/pacMain.png"));
-	vars.pacman = std::make_unique<PacmanE>(texManager.getTexture("resources/pacman/textures/pacMain.png"));
+	vars.maze = std::make_unique<Maze>(texManager.getTexture("pacMain.png"));
+	vars.pacman = std::make_unique<PacmanE>(texManager.getTexture("pacMain.png"));
 
 	auto entities = vars.getEntityVector();
 
@@ -21,12 +21,12 @@ void Pacman::engineStart() {
 	};
 	std::for_each(entities.begin(), entities.end(), addBuffers);
 
-	renderer = BatchRenderer {{"resources/myEn/shaders/shader.vert", "resources/myEn/shaders/shader.frag"}, totalBufferSize};
+	renderer = BatchRenderer {{"shader.vert", "shader.frag"}, totalBufferSize};
 	renderer.setResolution(pacmanWidth, pacmanHeight);
-	
 	for (auto &ent : entities) {
 		renderer.setBufferPointer(ent);
 	}
+
 
 }
 void Pacman::engineLoop(float frameDelta) {
@@ -53,7 +53,7 @@ void Pacman::render() noexcept {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texManager.getTexture("resources/pacman/textures/pacMain.png")->ID);
+	glBindTexture(GL_TEXTURE_2D, texManager.getTexture("pacMain.png")->ID);
 
 	renderer.render();
 
@@ -73,22 +73,24 @@ void Pacman::tick() noexcept {
 
 	const auto oldVars = vars;
 	vars.pacman->tick(oldVars);
+	vars.maze->tick(oldVars);
 
 	auto entities = vars.getEntityVector();
 	for (auto ent : entities) {
 		ent->updateBuffer();
 	}
+	vars.time++;
 }
 
 void Pacman::processInputs() noexcept {
 	if (inputManager.getInputState(UP) == InputState::PRESSED) {
-		vars.pacman->goUp();
+		vars.pacman->goDir(Direction::UP, vars);
 	} else if (inputManager.getInputState(RIGHT) == InputState::PRESSED) {
-		vars.pacman->goRight();
+		vars.pacman->goDir(Direction::RIGHT, vars);
 	} else if (inputManager.getInputState(DOWN) == InputState::PRESSED) {
-		vars.pacman->goDown();
+		vars.pacman->goDir(Direction::DOWN, vars);
 	} else if (inputManager.getInputState(LEFT) == InputState::PRESSED) {
-		vars.pacman->goLeft();
+		vars.pacman->goDir(Direction::LEFT, vars);
 	}
 	if (inputManager.getInputState(EXIT) == InputState::PRESSED) {
 		exit(0);
