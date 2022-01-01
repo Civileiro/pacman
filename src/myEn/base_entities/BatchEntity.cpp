@@ -8,7 +8,7 @@ size_t BatchEntity::getBufferSize() const noexcept {
 	return bufferSize;
 }
 
-void BatchEntity::initBuffer() const noexcept {
+void BatchEntity::initBuffer() noexcept {
 
 	auto quad = Vertex::getQuad();
 
