@@ -107,14 +107,11 @@ void Maze::tick(const PacVars &vars) noexcept {
 	} else {
 		depleted = false;
 	}
-<<<<<<< HEAD:src/game/entities/Maze.cpp
-=======
 	if (vars.time % 20 >= 10) {
 		flashedTictac = true;
 	} else {
 		flashedTictac = false;
 	}
->>>>>>> cmaking:src/pacman/entities/Maze.cpp
 }
 
 bool Maze::canPacGo(Direction dir, glm::vec2 pos) const noexcept {
@@ -144,25 +141,6 @@ bool Maze::canPacGo(Direction dir, glm::vec2 pos) const noexcept {
 bool Maze::pacPassable(int num) const noexcept {
 	// std::cout << "can pass? " << ((0 < num && num < 4 || num == 8 || num == 9) ? "yes" : "no") << '\n';
 	return 0 < num && num < 4 || num == 6 || num == 8 || num == 9;
-<<<<<<< HEAD:src/game/entities/Maze.cpp
-}
-
-std::tuple<int, int> Maze::currSquare(glm::vec2 pos) const noexcept {
-	const int pacCoordX = gsl::narrow_cast<int>(pos.x) / 8;
-	const int pacCoordY = 30 - gsl::narrow_cast<int>((pos.y - 16.f) / 8 + 0.01f);
-	return {pacCoordX, pacCoordY};
-}
-
-glm::vec2 Maze::currSquareMiddleCoords(glm::vec2 pos) const noexcept {
-	auto mod8X = gsl::narrow_cast<int>(pos.x) / 8;
-	auto mod8Y = gsl::narrow_cast<int>(pos.y) / 8;
-	return glm::vec2(mod8X * 8 + 4.f, mod8Y * 8 + 4.f);
-}
-
-bool Maze::isDepleted() const noexcept {
-	return depleted;
-=======
->>>>>>> cmaking:src/pacman/entities/Maze.cpp
 }
 
 std::tuple<int, int> Maze::currSquare(glm::vec2 pos) const noexcept {
