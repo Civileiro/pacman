@@ -10,8 +10,8 @@ void Pacman::engineStart() {
 	bindDefaultKeys();
 
 	core.setWindowSize(pacmanWidth * 3, pacmanHeight * 3);
-	vars.maze = std::make_unique<Maze>(texManager.getTexture("pacMain.png"));
-	vars.pacman = std::make_unique<PacmanE>(texManager.getTexture("pacMain.png"));
+	vars.maze = std::make_unique<Maze>(texManager.getTexture("resources/pacman/textures/pacMain.png"));
+	vars.pacman = std::make_unique<PacmanE>(texManager.getTexture("resources/pacman/textures/pacMain.png"));
 
 	auto entities = vars.getEntityVector();
 
@@ -21,7 +21,7 @@ void Pacman::engineStart() {
 	};
 	std::for_each(entities.begin(), entities.end(), addBuffers);
 
-	renderer = BatchRenderer {{"shader.vert", "shader.frag"}, totalBufferSize};
+	renderer = BatchRenderer {{"resources/myEn/shaders/shader.vert", "resources/myEn/shaders/shader.frag"}, totalBufferSize};
 	renderer.setResolution(pacmanWidth, pacmanHeight);
 	for (auto &ent : entities) {
 		renderer.setBufferPointer(ent);
@@ -53,7 +53,7 @@ void Pacman::render() noexcept {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texManager.getTexture("pacMain.png")->ID);
+	glBindTexture(GL_TEXTURE_2D, texManager.getTexture("resources/pacman/textures/pacMain.png")->ID);
 
 	renderer.render();
 

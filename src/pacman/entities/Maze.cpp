@@ -1,8 +1,8 @@
 #include <pacman/entities/Maze.hpp>
+#include <pacman/entities/PacEntities.hpp>
 
 #include <cmath>
 #include <gsl/gsl>
-#include "PacEntities.hpp"
 // clang-format off
 Maze::Maze(Texture *tex) 
 	: PacEntity {4 * 28 * 31, {0.f, 16.f}}, 
